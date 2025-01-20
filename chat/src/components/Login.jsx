@@ -1,12 +1,23 @@
 import React, { useState } from "react";
+import { useLogin } from "../Hooks/useLogin";
 
 export const Login = () => {
-  const [login, loginApi] = useState();
+  const [login, loginApi] = useState({
+    username: "",
+    password: "",
+  });
+  const [userLogin, userLoginApi] = useLogin();
+  console.log(userLogin);
   
+
   const handleChange = (e) => {
-    alert("Login Success");
+    // alert("Login Success");
     const { name, value } = e.target;
     loginApi({ ...login, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    userLoginApi(login);
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -26,6 +37,7 @@ export const Login = () => {
               type="text"
               id="username"
               name="username"
+              value={login.username}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your username"
@@ -43,6 +55,7 @@ export const Login = () => {
               type="password"
               id="password"
               name="password"
+              value={login.password}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your password"
@@ -53,6 +66,7 @@ export const Login = () => {
             <button
               type="submit"
               className="w-full bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition duration-200"
+              onClick={handleSubmit}
             >
               Login
             </button>

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const useLogin = () => {
   const [userLogin, setuserLogin] = useState();
-  const loginApi = async () => {
+  const userLoginApi = async (values) => {
     try {
       const resposne = await fetch(
         "https://api.freeapi.app/api/v1/users/login",
@@ -12,7 +12,10 @@ export const useLogin = () => {
             accept: "application/json",
             "content-type": "application/json",
           },
-          body: '{"password":"test@123","username":"doejohn"}',
+          body: JSON.stringify({
+            username: values.username,
+            password: values.password,
+          }),
         }
       );
       const data = await resposne.json();
@@ -21,4 +24,5 @@ export const useLogin = () => {
       console.log(e);
     }
   };
+  return [userLogin, userLoginApi];
 };
