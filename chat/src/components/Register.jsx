@@ -11,13 +11,16 @@ export const Register = () => {
     role: "",
     username: "",
   });
+  console.log("value", values);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
   const handleSubmit = (e) => {
+    alert("Register Success");
     e.preventDefault();
-    registerApi();
+    registerApi(values);
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">

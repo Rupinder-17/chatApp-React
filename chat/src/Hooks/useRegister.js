@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 export const useRegister = () => {
   const [register, setRegister] = useState()
 
-  const registerApi= async()=>{
+  const registerApi= async(values)=>{
     try {
       const res = await fetch("https://api.freeapi.app/api/v1/users/register", {
         method: "POST",
@@ -11,7 +11,12 @@ export const useRegister = () => {
           accept: "application/json",
           "content-type": "application/json",
         },
-        body: '{"email":"user.email@domain.com","password":"test@123","role":"ADMIN","username":"doejohn"}',
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+          role: values.role,
+          username: values.username,
+        }),
       });
       const data = await res.json();
       setRegister(data);
