@@ -14,10 +14,11 @@ export const useRegister = () => {
         body: '{"email":"user.email@domain.com","password":"test@123","role":"ADMIN","username":"doejohn"}',
       });
       const data = await res.json();
+      setRegister(data);
       console.log(data);
     } catch (e) {
       console.log(e);
     }
 }
-  return [registerApi]
+  return [register, registerApi]
 }
