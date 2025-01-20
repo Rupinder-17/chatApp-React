@@ -19,7 +19,10 @@ export const useLogin = () => {
         }
       );
       const data = await resposne.json();
+      console.log("data", data);
+      
       setuserLogin(data);
+      localStorage.setItem("token", JSON.stringify(data));
     } catch (e) {
       console.log(e);
     }

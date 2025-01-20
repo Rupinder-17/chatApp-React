@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useLogin } from "../Hooks/useLogin";
 
 export const Login = () => {
@@ -7,15 +7,15 @@ export const Login = () => {
     password: "",
   });
   const [userLogin, userLoginApi] = useLogin();
-  console.log(userLogin);
-  
+  console.log("userlogin",userLogin);
 
   const handleChange = (e) => {
-    // alert("Login Success");
     const { name, value } = e.target;
     loginApi({ ...login, [name]: value });
   };
   const handleSubmit = (e) => {
+    alert("Login Success");
+
     e.preventDefault();
     userLoginApi(login);
   };
