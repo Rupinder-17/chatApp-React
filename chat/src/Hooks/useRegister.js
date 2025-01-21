@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 
 export const useRegister = () => {
   const [register, setRegister] = useState()
@@ -19,6 +19,7 @@ export const useRegister = () => {
         }),
       });
       const data = await res.json();
+      localStorage.setItem("status", "login")
       setRegister(data);
       console.log(data);
     } catch (e) {
