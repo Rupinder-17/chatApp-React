@@ -1,5 +1,7 @@
 import React from 'react'
+import { useContext} from 'react'
+import { ChatContent } from './ChatProvider'
 
-export const useContext = () => {
- 
+export const useContextChat = () => {
+ return useContext(ChatContent)
 }

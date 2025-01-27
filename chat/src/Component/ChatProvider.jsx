@@ -1,7 +1,7 @@
 import  {createContext} from 'react'
 import { useRegisterApi } from '../Hooks/useRegister'
 
-const ChatContent = createContext()
+ export const ChatContent = createContext()
 export const ChatProvider = ({children}) => {
     const [state, registerApi] = useRegisterApi()
     console.log("state", state);
