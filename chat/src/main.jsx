@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-// import { Register } from './components/Register'
+import { Register } from './components/Register'
 // import { Login } from './components/Login'
 // import { OnlineUser } from './components/OnlineUser'
 import { Index } from './Component/Index'
@@ -22,10 +22,10 @@ import {ChatProvider } from './Component/ChatProvider'
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ChatProvider>
-      <Index />
+      {/* <Index /> */}
+      <Register/>
     </ChatProvider>
     {/* <Appp/> */}
-    {/* <Register/> */}
     {/* <Login/> */}
     {/* <OnlineUser/> */}
   </StrictMode>
