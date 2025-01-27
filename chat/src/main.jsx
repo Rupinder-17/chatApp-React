@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { Register } from './components/Register'
-import { Login } from './components/Login'
-import { OnlineUser } from './components/OnlineUser'
+// import { Register } from './components/Register'
+// import { Login } from './components/Login'
+// import { OnlineUser } from './components/OnlineUser'
 import { Index } from './Component/Index'
+import {ChatProvider } from './Component/ChatProvider'
 
 // const Appp = () => {
 //   const value = localStorage.getItem("status");
@@ -18,13 +19,15 @@ import { Index } from './Component/Index'
 //       return <Register/>
 //   }
 // };
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <ChatProvider>
+      <Index />
+    </ChatProvider>
     {/* <Appp/> */}
     {/* <Register/> */}
     {/* <Login/> */}
     {/* <OnlineUser/> */}
-    <Index/>
-  </StrictMode>,
-)
+  </StrictMode>
+);
 
