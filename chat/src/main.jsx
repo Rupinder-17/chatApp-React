@@ -4,25 +4,27 @@ import './index.css'
 import { Register } from './components/Register'
 import { Login } from './components/Login'
 import { OnlineUser } from './components/OnlineUser'
+import { Index } from './Component/Index'
 
-const Appp = () => {
-  const value = localStorage.getItem("status");
-  console.log("status",value);
-  switch(value){
-    case "login":
-      return <Login/>
-    case "onlineUser":
-      return <OnlineUser/>
-    default:
-      return <Register/>
-  }
-};
+// const Appp = () => {
+//   const value = localStorage.getItem("status");
+//   console.log("status",value);
+//   switch(value){
+//     case "login":
+//       return <Login/>
+//     case "onlineUser":
+//       return <OnlineUser/>
+//     default:
+//       return <Register/>
+//   }
+// };
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Appp/>
+    {/* <Appp/> */}
     {/* <Register/> */}
     {/* <Login/> */}
     {/* <OnlineUser/> */}
+    <Index/>
   </StrictMode>,
 )
 
