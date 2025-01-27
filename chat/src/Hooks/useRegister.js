@@ -1,9 +1,25 @@
-import  { useState } from 'react'
+import { useReducer } from "react";
 
-export const useRegister = () => {
-  const [register, setRegister] = useState()
+const initialState = { data: [], error: null, loading: false };
 
-  const registerApi= async(values)=>{
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "REGISTER_START":
+      return { ...state, loading: true, error: null };
+    case "REGISTER_SUCCESS":
+      return { ...state, loading: false, data: action.payload };
+    case "REGISTER_FAILURE":
+      return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const useRegisterApi = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const registerApi = async (data) => {
+    dispatch({ type: "REGISTER_START" });
     try {
       const res = await fetch("https://api.freeapi.app/api/v1/users/register", {
         method: "POST",
@@ -12,19 +28,21 @@ export const useRegister = () => {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          email: values.email,
-          password: values.password,
-          role: values.role,
-          username: values.username,
+          email: data.email,
+          password: data.password,
+          role: data.role,
+          username: data.username,
         }),
       });
-      const data = await res.json();
-      localStorage.setItem("status", "login")
-      setRegister(data);
-      console.log(data);
+
+      const result = await res.json();
+      dispatch({ type: "REGISTER_SUCCESS", payload: result });
+      console.log(result);
     } catch (e) {
-      console.log(e);
+      dispatch({ type: "REGISTER_FAILURE", payload: e.message });
+      console.error(e);
     }
-}
-  return [register, registerApi]
-}
+  };
+
+  return [state, registerApi];
+};
