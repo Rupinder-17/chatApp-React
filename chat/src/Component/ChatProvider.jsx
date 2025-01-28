@@ -8,6 +8,8 @@ export const ChatProvider = ({ children }) => {
   const [register, registerApi] = useRegisterApi();
   const  [userLogin, userLoginApi] = useLoginn();
   const [onlineuser, onlineuserApi] = useOnlineuser();
+  console.log("onlineuser", onlineuser);
+  
 
   const [currentPage, setCurrentPage] = useState("register");
 

@@ -1,12 +1,14 @@
 import  { useState } from "react";
 // import { useLogin } from "../Hooks/useLogin";
 import { useLoginn } from "../Hooks/useLogin";
+import { useContextChat } from "../Hooks/useContext";
 
 export const Login = () => {
   const [login, loginApi] = useState({
     username: "",
     password: "",
   });
+  const {setcurrentpage} = useContextChat();
   const [userLogin, userLoginApi] = useLoginn();
   console.log("userlogin",userLogin);
 
@@ -19,6 +21,8 @@ export const Login = () => {
 
     e.preventDefault();
     userLoginApi(login);
+    setcurrentpage("chat");
+
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
