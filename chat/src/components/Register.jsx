@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useContextChat } from "../Hooks/useContext";
 
 export const Register = () => {
-   const {state, registerApi} = useContextChat()
+   const {state, registerApi, setCurrentPage} = useContextChat()
   console.log("res", state);
 
   const [values, setValues] = useState({
@@ -21,6 +21,7 @@ export const Register = () => {
     alert("Register Success");
     e.preventDefault();
     registerApi(values);
+    setCurrentPage("login");
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">

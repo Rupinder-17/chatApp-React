@@ -22,7 +22,8 @@ import {ChatProvider } from './Component/ChatProvider'
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ChatProvider>
-      <Register/>
+      {/* <Register/> */}
+      <Index/>
     </ChatProvider>
     {/* <Appp/> */}
     {/* <Login/> */}
