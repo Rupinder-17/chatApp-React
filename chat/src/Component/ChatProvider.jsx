@@ -3,10 +3,10 @@ import { useRegisterApi } from "../Hooks/useRegister";
 
 export const ChatContent = createContext();
 export const ChatProvider = ({ children }) => {
-  const [state, registerApi] = useRegisterApi();
-  console.log("state", state);
+  const [register, registerApi] = useRegisterApi()
+  console.log("state", register);
   const chatDisplay = {
-    state,
+    state: register,
     registerApi,
   };
   return (
