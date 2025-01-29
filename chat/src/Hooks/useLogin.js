@@ -18,6 +18,10 @@ export const useLoginn = () => {
           }),
         }
       );
+      if (!resposne.ok) {
+        alert("Login failed");
+        throw new Error("Login failed");
+      }
       const data = await resposne.json();
       console.log("data", data);
 

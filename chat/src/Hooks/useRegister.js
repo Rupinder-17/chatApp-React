@@ -19,6 +19,10 @@ export const useRegisterApi = () => {
           username: data.username,
         }),
       });
+      if(!res.ok){
+        alert("Register failed")
+        throw new Error("Register failed")
+      }
 
       const result = await res.json();
       setregister(result);

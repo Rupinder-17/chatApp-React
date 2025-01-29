@@ -6,7 +6,7 @@ export const Login = () => {
     username: "",
     password: "",
   });
-  const { userLogin, userLoginApi, setcurrentpage } = useContextChat();
+  const { userLogin, userLoginApi, setCurrentPage } = useContextChat();
   // const [userLogin, userLoginApi] = useLoginn();
   console.log("userlogin", userLogin);
 
@@ -19,7 +19,7 @@ export const Login = () => {
 
     e.preventDefault();
     userLoginApi(login);
-    setcurrentpage("chat");
+     setCurrentPage("chat");
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">

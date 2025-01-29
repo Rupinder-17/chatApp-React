@@ -22,6 +22,8 @@ export const useOnlineuser = () => {
         }
       );
       const data = await res.json();
+      console.log("data", data);
+      
       setOnlineuser(data);
     } catch (e) {
       console.log(e);
