@@ -2,12 +2,22 @@ import { useEffect } from "react";
 import { useContextChat } from "../Hooks/useContext";
 
 export const OnlineUser = () => {
-  const { state, onlineuserApi } = useContextChat();
+  const { state, onlineuserApi, mesaggeApi, setCurrentPage } = useContextChat();
   const { onlineuser } = state;
 
   useEffect(() => {
     onlineuserApi();
   }, []);
+
+  const handleGetMessage = (user) => {
+    if(user?._id){
+        mesaggeApi(user._id);
+        localStorage.setItem("userId", user._id);
+        console.log("Chat ID set:", user._id);
+        setCurrentPage("message");
+    }
+
+  }
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -20,11 +30,15 @@ export const OnlineUser = () => {
             <div
               key={id}
               className="bg-white shadow-lg rounded p-4 transition duration-300 ease-in-out border border-gray-200 flex items-center gap-4"
-            >
+            onClick={()=>{
+                console.log("user",item)
+                handleGetMessage(item)
+            }}
+             >
               <div className="w-12 h-12 flex items-center justify-center bg-blue-500 text-white rounded-full text-xl font-bold">
                 {item.username.charAt(0).toUpperCase()}
               </div>
-              <h2 className="text-xl font-semibold text-gray-800" onClick={()=>{console.log("clicked")}}>
+              <h2 className="text-xl font-semibold text-gray-800">
                 {item.username}
               </h2>
             </div>
