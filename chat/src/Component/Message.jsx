@@ -1,14 +1,14 @@
-import  { useEffect, useState } from 'react'
-import { useContextChat } from '../Hooks/useContext';
+import { useEffect, useState } from "react";
+import { useContextChat } from "../Hooks/useContext";
 
 export const Message = () => {
-    const { state, mesaggeApi } = useContextChat();
-    const {message} = state
-    const [inputValue , setInputValue] = useState()
+  const { state, mesaggeApi } = useContextChat();
+  const { message } = state;
+  const [inputValue, setInputValue] = useState();
 
-    useEffect(()=>{
-        mesaggeApi()
-    },[])
+  useEffect(() => {
+    mesaggeApi();
+  }, []);
   return (
     <div>
       <div className="p-4 bg-gray-50 min-h-screen">
@@ -22,7 +22,7 @@ export const Message = () => {
               <div
                 key={index}
                 className={`p-2 my-2 rounded ${
-                  msg.sender === "me"
+                  msg.sender === ""
                     ? "bg-blue-500 text-white self-end text-right"
                     : "bg-gray-200 text-black self-start text-left"
                 }`}
@@ -51,7 +51,6 @@ export const Message = () => {
           </button>
         </div>
       </div>
-      
     </div>
   );
-}
+};
