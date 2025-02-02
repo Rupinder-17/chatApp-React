@@ -13,8 +13,8 @@ export const OnlineUser = () => {
     <div>
         <h1>onlineuser</h1>
         {
-            onlineuser && onlineuser.data.map((item) => (
-                <div key={item.id}>
+            onlineuser && onlineuser.data.map((item,id) => (
+                <div key={id}>
                     <h1>{item.username}</h1>
                 </div>
             ))

@@ -23,11 +23,9 @@ export const useLoginn = () => {
         throw new Error("Login failed");
       }
       const data = await resposne.json();
-      // console.log("data", data);
 
       setuserLogin(data);
       localStorage.setItem("token", JSON.stringify(data));
-      localStorage.setItem("status", "onlineUser");
     } catch (e) {
       console.log(e);
     }

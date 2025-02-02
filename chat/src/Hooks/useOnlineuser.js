@@ -22,6 +22,7 @@ export const useOnlineuser = () => {
         }
       );
       const data = await res.json();
+      localStorage.setItem("onlineuser", JSON.stringify(data));
       console.log("dataa", data);
       
       setOnlineuser(data);
