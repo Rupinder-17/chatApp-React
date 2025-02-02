@@ -22,7 +22,7 @@ export const useOnlineuser = () => {
         }
       );
       const data = await res.json();
-      console.log("data", data);
+      console.log("dataa", data);
       
       setOnlineuser(data);
     } catch (e) {
