@@ -14,14 +14,17 @@ export const OnlineUser = () => {
       <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
         Online Users
       </h1>
-      <div className="gap-4">
+      <div className="gap-4 w-[40%] m-auto px-4">
         {onlineuser?.data?.length > 0 ? (
           onlineuser.data.map((item, id) => (
             <div
               key={id}
-              className="bg-white shadow-lg rounded p-4  transition duration-300 ease-in-out border border-gray-200"
+              className="bg-white shadow-lg rounded p-4 transition duration-300 ease-in-out border border-gray-200 flex items-center gap-4"
             >
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              <div className="w-12 h-12 flex items-center justify-center bg-blue-500 text-white rounded-full text-xl font-bold">
+                {item.username.charAt(0).toUpperCase()}
+              </div>
+              <h2 className="text-xl font-semibold text-gray-800" onClick={()=>{console.log("clicked")}}>
                 {item.username}
               </h2>
             </div>
