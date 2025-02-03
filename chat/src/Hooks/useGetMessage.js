@@ -25,7 +25,7 @@ export const useGetMessage = () => {
                 throw new Error("Failed to get message");
             }
             const data = await res.json();
-            localStorage.setItem("message", data);
+            localStorage.setItem("message", JSON.stringify(data));
             setMessage(data);
         }catch(e){
             console.log(e);

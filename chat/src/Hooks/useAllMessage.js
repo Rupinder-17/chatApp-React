@@ -1,22 +1,21 @@
-import  { useState } from 'react'
+import React from 'react'
 
-export const useSendMessage = () => {
-    const [sendmessagee, setSendMessage] = useState()
+export const useAllMessage = () => {
+    const [allMessage, setAllMessage] = React.useState()
     const UserToken = JSON.parse(localStorage.getItem("token"));
-     const chatId = localStorage.getItem("userId");
+    const chatId = localStorage.getItem("userId");
 
-    const sendMessage = async (message)=>{
+    const getAllMessage = async ()=>{
         try{
             const res = await fetch(
               `https://api.freeapi.app/api/v1/chat-app/messages/${chatId}`,
               {
-                method: "POST",
+                method: "GET",
                 headers: {
                   accept: "application/json",
                   "content-type": "application/json",
                   Authorization: `Bearer ${UserToken.data.accessToken}`,
                 },
-                body: JSON.stringify({ message }),
               }
             );
             if(!res.ok){
@@ -24,14 +23,14 @@ export const useSendMessage = () => {
                 throw new Error("there is an error")
             }
             const data = await res.json()
-            console.log("sendmsg", data);
+            console.log("allmsg", data);
             
-            setSendMessage(data)
+            setAllMessage(data)
 
         }
         catch(e){
             console.error(e)
         }
     }
-    return [sendmessagee, sendMessage]
+    return [allMessage, getAllMessage]
 }
