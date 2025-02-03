@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useContextChat } from "../Hooks/useContext";
 
 export const OnlineUser = () => {
-  const { state, onlineuserApi, mesaggeApi, setCurrentPage } = useContextChat();
+  const { state, onlineuserApi, createChat, setCurrentPage } = useContextChat();
   const { onlineuser } = state;
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export const OnlineUser = () => {
 
   const handleGetMessage = (user) => {
     if(user?._id){
-        mesaggeApi(user._id);
+        createChat(user._id);
         localStorage.setItem("userId", user._id);
         console.log("Chat ID set:", user._id);
         setCurrentPage("message");

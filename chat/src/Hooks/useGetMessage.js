@@ -1,13 +1,13 @@
 import  { useState } from 'react'
 
-export const useGetMessage = () => {
+export const useCreateChat = () => {
     const [message , setMessage] = useState();
     const UserToken = JSON.parse(localStorage.getItem("token"))
     const chatId = localStorage.getItem("userId");
-    console.log("users",chatId);
+    console.log("usersid for",chatId);
     
     
-    const mesaggeApi = async()=>{
+    const createChat = async()=>{
         try{
             const res = await fetch(
               `https://api.freeapi.app/api/v1/chat-app/chats/c/${chatId}`,
@@ -26,11 +26,11 @@ export const useGetMessage = () => {
             }
             const data = await res.json();
             
-            localStorage.setItem("message", data.data._id);
+            localStorage.setItem("userChatId", data.data._id);
             setMessage(data);
         }catch(e){
             console.log(e);
         }
     }
-    return [message, mesaggeApi];
+    return [message, createChat];
 }
