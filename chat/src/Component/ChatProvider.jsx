@@ -16,12 +16,12 @@ export const ChatProvider = ({ children }) => {
   const [message, createChat] = useCreateChat();
   const [sendMessageChat, sendMessage] = useSendMessage();
   const [allMessage, getAllMessage] = useAllMessage()
-  console.log("onlineuser", onlineuser);
   const isUserLogin = localStorage.getItem("token");
+  // console.log("allmsg", allMessage);
+  
 
   const [currentPage, setCurrentPage] = useState(isUserLogin ? "chat" : "register");
 
-  console.log("state", register);
   
   const chatDisplay = {
     state: {currentPage, register,userLogin, onlineuser, message, sendMessageChat, allMessage},

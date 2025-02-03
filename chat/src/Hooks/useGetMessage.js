@@ -4,7 +4,7 @@ export const useCreateChat = () => {
     const [message , setMessage] = useState();
     const UserToken = JSON.parse(localStorage.getItem("token"))
     const chatId = localStorage.getItem("userId");
-    console.log("usersid for",chatId);
+    // console.log("usersid for",chatId);
     
     
     const createChat = async()=>{

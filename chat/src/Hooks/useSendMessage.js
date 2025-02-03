@@ -4,12 +4,12 @@ export const useSendMessage = () => {
   const [sendMessageChat, setSendMessage] = useState();
   const UserToken = JSON.parse(localStorage.getItem("token"));
   const userChatId = localStorage.getItem("userChatId");
-  console.log("usersId", userChatId);
-  console.log("sendmsg", sendMessageChat);
+  // console.log("usersId", userChatId);
+  // console.log("sendmsg", sendMessageChat);
   
 
   const sendMessage = async (message) => {
-    console.log("mes", message);
+    // console.log("mes", message);
 
     try {
       const res = await fetch(
@@ -29,7 +29,8 @@ export const useSendMessage = () => {
         throw new Error("there is an error");
       }
       const data = await res.json();
-      console.log("sendmsg", data);
+      // console.log("sendmsg", data);
+      localStorage.setItem("sendMessage", data.data.content);
 
       setSendMessage(data);
     } catch (e) {
