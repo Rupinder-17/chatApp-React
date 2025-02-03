@@ -3,7 +3,7 @@ import React from 'react'
 export const useAllMessage = () => {
     const [allMessage, setAllMessage] = React.useState()
     const UserToken = JSON.parse(localStorage.getItem("token"));
-    const chatId = localStorage.getItem("userId");
+    const chatId = localStorage.getItem("message");
 
     const getAllMessage = async ()=>{
         try{

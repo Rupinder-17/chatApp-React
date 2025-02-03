@@ -3,10 +3,12 @@ import { useContextChat } from "../Hooks/useContext";
 
 export const Message = () => {
     
-  const { state, mesaggeApi, sendMessage } = useContextChat();
+  const { state, mesaggeApi, sendMessage, getAllMessage } = useContextChat();
   const { message } = state;
   const [inputValue, setInputValue] = useState();
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log("stayte", state);
+  
 
   useEffect(() => {
     mesaggeApi();
@@ -51,8 +53,13 @@ export const Message = () => {
           />
           <button
             onClick={() => {
+              console.log("inputValue", inputValue);
+              
               sendMessage(inputValue);
               setInputValue("");
+              setTimeout(() => {
+                getAllMessage()
+              },2500);
             }}
             className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600"
           >

@@ -3,9 +3,15 @@ import  { useState } from 'react'
 export const useSendMessage = () => {
     const [sendmessagee, setSendMessage] = useState()
     const UserToken = JSON.parse(localStorage.getItem("token"));
-     const chatId = localStorage.getItem("userId");
+     const chatId = localStorage.getItem("message");
+     
+     
+    
+     
 
     const sendMessage = async (message)=>{
+      console.log("mes",message);
+      
         try{
             const res = await fetch(
               `https://api.freeapi.app/api/v1/chat-app/messages/${chatId}`,
@@ -16,7 +22,7 @@ export const useSendMessage = () => {
                   "content-type": "application/json",
                   Authorization: `Bearer ${UserToken.data.accessToken}`,
                 },
-                body: JSON.stringify({ message }),
+                body: JSON.stringify({content: message }),
               }
             );
             if(!res.ok){
