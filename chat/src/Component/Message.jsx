@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useContextChat } from "../Hooks/useContext";
 
 export const Message = () => {
-  const { state, createChat, allMessage, getAllMessage, sendMessage } =
+  const { state, createChat,  getAllMessage, sendMessage } =
     useContextChat();
-  // const { allMessage } = state;
+  const { allMessage } = state;
   console.log("messagesend", allMessage);
   console.log(state);
 
@@ -27,7 +27,7 @@ export const Message = () => {
           {allMessage?.data?.length > 0 ? (
             allMessage?.data?.map((msg, index) => {
               // console.log(typeof allMessage);
-              const isSent = msg.sender === user.user.username;
+              const isSent = msg?.sender?.username === user?.user?.username;
               console.log("mmm", msg);
 
               return (
