@@ -29,8 +29,6 @@ export const useSendMessage = () => {
         throw new Error("there is an error");
       }
       const data = await res.json();
-      // console.log("sendmsg", data);
-      localStorage.setItem("sendMessage", data.data.content);
 
       setSendMessage(data);
     } catch (e) {

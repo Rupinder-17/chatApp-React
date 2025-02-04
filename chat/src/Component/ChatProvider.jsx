@@ -5,6 +5,7 @@ import { useOnlineuser } from "../Hooks/useOnlineuser";
 import { useCreateChat } from "../Hooks/useCreateChat";
 import { useSendMessage } from "../Hooks/useSendMessage";
 import { useAllMessage } from "../Hooks/useAllMessage";
+import { useDelete } from "../Hooks/useDelete";
 
 export const ChatContent = createContext();
 
@@ -16,7 +17,9 @@ export const ChatProvider = ({ children }) => {
   const [message, createChat] = useCreateChat();
   const [sendMessageChat, sendMessage] = useSendMessage();
   const [allMessage, getAllMessage] = useAllMessage()
+  const [deleteMessage, deleteMessageApi] = useDelete();
   const isUserLogin = localStorage.getItem("token");
+
   // console.log("allmsg", allMessage);
   
 
@@ -24,7 +27,7 @@ export const ChatProvider = ({ children }) => {
 
   
   const chatDisplay = {
-    state: {currentPage, register,userLogin, onlineuser, message, sendMessageChat, allMessage},
+    state: {currentPage, register,userLogin, onlineuser, message, sendMessageChat, allMessage, deleteMessage},
     registerApi,
     userLoginApi,
     setCurrentPage,
@@ -32,6 +35,7 @@ export const ChatProvider = ({ children }) => {
     createChat,
     sendMessage,
     getAllMessage,
+    deleteMessageApi,
   };
 
   return (

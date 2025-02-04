@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useContextChat } from "../Hooks/useContext";
 
 export const Message = () => {
-  const { state, createChat,  getAllMessage, sendMessage } =
+  const { state, createChat,  getAllMessage, sendMessage,  deleteMessageApi } =
     useContextChat();
   const { allMessage } = state;
   console.log("messagesend", allMessage);
@@ -44,6 +44,13 @@ export const Message = () => {
                     {" "}
                     {msg.content}
                   </p>
+                  <button onClick={()=> {
+                    deleteMessageApi(msg._id)
+                    setTimeout(() => {
+                      getAllMessage();
+                    }, 1000)}
+
+                }>del</button>
                 </div>
               );
             })
