@@ -9,7 +9,7 @@ export const Message = () => {
   console.log(state);
 
   const [inputValue, setInputValue] = useState("");
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
   console.log("user", user);
 
   useEffect(() => {
@@ -27,19 +27,23 @@ export const Message = () => {
           {allMessage?.data?.length > 0 ? (
             allMessage?.data?.map((msg, index) => {
               // console.log(typeof allMessage);
-              const isSent = msg?.sender?.username === user?.user?.username;
+              const isSent = msg?.sender?._id === user._id;
+              console.log("issent", isSent);
+              
               console.log("mmm", msg);
 
               return (
-                <div
-                  key={index}
-                  className={`p-2 my-2 rounded ${
-                    isSent
-                      ? "bg-blue-500 text-white self-end text-right"
-                      : "bg-gray-200 text-black self-start text-left"
-                  }`}
-                >
-                  <p>{msg.content}</p>
+                <div key={index} className= {`flex ${isSent ? "justify-end" : "justify-start"}`}>
+                  <p
+                    className={`p-2 my-2 rounded max-w-[60%] ${
+                      isSent
+                        ? "bg-blue-500 text-white   "
+                        : "bg-gray-200 text-black   "
+                    }`}
+                  >
+                    {" "}
+                    {msg.content}
+                  </p>
                 </div>
               );
             })

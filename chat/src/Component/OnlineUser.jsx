@@ -11,9 +11,11 @@ export const OnlineUser = () => {
 
   const handleGetMessage = (user) => {
     if(user?._id){
+      console.log("User ID:", user._id);
+      
         createChat(user._id);
         localStorage.setItem("userId", user._id);
-        console.log("Chat ID set:", user._id);
+        // console.log("Chat ID set:", user._id);
         setCurrentPage("message");
     }
 

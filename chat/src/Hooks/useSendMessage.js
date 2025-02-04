@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const useSendMessage = () => {
   const [sendMessageChat, setSendMessage] = useState();
-  const UserToken = JSON.parse(localStorage.getItem("token"));
+  const UserToken = localStorage.getItem("token");
   const userChatId = localStorage.getItem("userChatId");
   // console.log("usersId", userChatId);
   // console.log("sendmsg", sendMessageChat);
@@ -19,7 +19,7 @@ export const useSendMessage = () => {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization: `Bearer ${UserToken.data.accessToken}`,
+            Authorization: `Bearer ${UserToken}`,
           },
           body: JSON.stringify({ content: message }),
         }

@@ -25,7 +25,8 @@ export const useLoginn = () => {
       const data = await resposne.json();
 
       setuserLogin(data);
-      localStorage.setItem("token", JSON.stringify(data));
+      localStorage.setItem("token", data.data.accessToken); // store token in
+      localStorage.setItem("loggedInUser", JSON.stringify(data.data.user)); // store user id in
     } catch (e) {
       console.log(e);
     }

@@ -2,7 +2,7 @@ import React from "react";
 
 export const useAllMessage = () => {
   const [allMessage, setAllMessage] = React.useState();
-  const UserToken = JSON.parse(localStorage.getItem("token"));
+  const UserToken = localStorage.getItem("token");
   const chatId = localStorage.getItem("userChatId");
 
   const getAllMessage = async () => {
@@ -14,7 +14,7 @@ export const useAllMessage = () => {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization: `Bearer ${UserToken.data.accessToken}`,
+            Authorization: `Bearer ${UserToken}`,
           },
         }
       );

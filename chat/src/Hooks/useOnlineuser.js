@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const useOnlineuser = () => {
   const [onlineuser, setOnlineuser] = useState();
-  const UserToken = JSON.parse(localStorage.getItem("token"));
+  const UserToken = localStorage.getItem("token");
 
   console.log("token", UserToken);
   console.log("line", onlineuser);
@@ -16,7 +16,7 @@ export const useOnlineuser = () => {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization: `Bearer ${UserToken.data.accessToken}`,
+            Authorization: `Bearer ${UserToken}`,
           },
         }
       );
