@@ -4,8 +4,12 @@ import { useContextChat } from "../Hooks/useContext";
 export const OnlineUser = () => {
   const { state, onlineuserApi, createChat, setCurrentPage } = useContextChat();
   const { onlineuser } = state;
+  console.log("renderd component");
+  
 
   useEffect(() => {
+    console.log("useEffect");
+    
     onlineuserApi();
   }, []);
 

@@ -14,7 +14,9 @@ export const Message = () => {
 
   useEffect(() => {
     createChat();
+    setTimeout(() => {
     getAllMessage();
+    }, 1000);
   }, []);
   return (
     <div>
@@ -48,7 +50,8 @@ export const Message = () => {
                     deleteMessageApi(msg._id)
                     setTimeout(() => {
                       getAllMessage();
-                    }, 1000)}
+                    }, 2000);
+                  }
 
                 }>del</button>
                 </div>

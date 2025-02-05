@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useContextChat } from "../Hooks/useContext";
 
 export const Register = () => {
-   const {state, registerApi, setCurrentPage} = useContextChat()
+  const { state, registerApi, setCurrentPage } = useContextChat();
   console.log("res", state);
 
   const [values, setValues] = useState({
@@ -12,16 +12,21 @@ export const Register = () => {
     username: "",
   });
   console.log("value", values);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-  const handleSubmit = (e) => {
-    alert("Register Success");
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    registerApi(values);
-    setCurrentPage("login");
+    console.log(await registerApi(values));
+    
+    // if (registerApi(values)) {
+    //   alert("Register Success");
+    //   setCurrentPage("login");
+
+    //   return;
+    // }
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
