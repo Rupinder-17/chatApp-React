@@ -1,13 +1,21 @@
 import  { useState } from 'react'
+// import { fetchData } from '../Component/FetchFun';
 
 export const useCreateChat = () => {
     const [message , setMessage] = useState();
     const UserToken = localStorage.getItem("token")
     const chatId = localStorage.getItem("userId");
+    
     // console.log("usersid for",chatId);
+
+
+    
     
     
     const createChat = async()=>{
+
+
+
         try{
             const res = await fetch(
               `https://api.freeapi.app/api/v1/chat-app/chats/c/${chatId}`,
@@ -33,4 +41,5 @@ export const useCreateChat = () => {
         }
     }
     return [message, createChat];
-}
+    }
+

@@ -20,10 +20,10 @@ export const Register = () => {
   const handleSubmit =async (e) => {
     e.preventDefault();
     console.log(await registerApi(values));
-    
+      setCurrentPage("login");
+
     // if (registerApi(values)) {
     //   alert("Register Success");
-    //   setCurrentPage("login");
 
     //   return;
     // }
