@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useContextChat } from "../Hooks/useContext";
+import { useContextChat } from "../hooks/useContext";
 
 export const OnlineUser = () => {
   const { state, onlineuserApi, createChat, setCurrentPage } = useContextChat();

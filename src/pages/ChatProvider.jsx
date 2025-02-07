@@ -1,11 +1,11 @@
 import { createContext, useState } from "react";
-import { useRegisterApi } from "../Hooks/useRegister";
-import { useLoginn } from "../Hooks/useLogin";
-import { useOnlineuser } from "../Hooks/useOnlineuser";
-import { useCreateChat } from "../Hooks/useCreateChat";
-import { useSendMessage } from "../Hooks/useSendMessage";
-import { useAllMessage } from "../Hooks/useAllMessage";
-import { useDelete } from "../Hooks/useDelete";
+import { useRegisterApi } from "../hooks/useRegisterApi";
+import { useLoginn } from "../hooks/useLogin";
+import { useOnlineuser } from "../hooks/useOnlineuser";
+import { useCreateChat } from "../hooks/useCreateChat";
+import { useSendMessage } from "../hooks/useSendMessage";
+import { useAllMessage } from "../hooks/useAllMessage";
+import { useDelete } from "../hooks/useDelete";
 
 export const ChatContent = createContext();
 

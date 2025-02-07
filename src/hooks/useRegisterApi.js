@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fetchData } from "../Component/FetchFun";
+import { fetchData } from "../pages/FetchFun";
 
 export const useRegisterApi = () => {
   const [register, setregister] = useState();

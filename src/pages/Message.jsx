@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useContextChat } from "../Hooks/useContext";
+import { useContextChat } from "../hooks/useContext";
 
 export const Message = () => {
   const { state, createChat,  getAllMessage, sendMessage,  deleteMessageApi } =

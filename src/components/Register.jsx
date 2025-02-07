@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useContextChat } from "../Hooks/useContext";
+import { useContextChat } from "../hooks/useContext";
 
 export const Register = () => {
   const { state, registerApi, setCurrentPage } = useContextChat();

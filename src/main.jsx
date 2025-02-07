@@ -4,8 +4,8 @@ import './index.css'
 import { Register } from './components/Register'
 // import { Login } from './components/Login'
 // import { OnlineUser } from './components/OnlineUser'
-import { Index } from './Component/Index'
-import {ChatProvider } from './Component/ChatProvider'
+import { Index } from './pages/Index'
+import {ChatProvider } from './pages/ChatProvider'
 
 // const Appp = () => {
 //   const value = localStorage.getItem("status");

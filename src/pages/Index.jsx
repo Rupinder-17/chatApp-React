@@ -1,5 +1,5 @@
 import React from "react";
-import { useContextChat } from "../Hooks/useContext";
+import { useContextChat } from "../hooks/useContext";
 import { Register } from "../components/Register";
 import { Login } from "./Login";
 import { OnlineUser } from "./OnlineUser";

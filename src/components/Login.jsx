@@ -1,5 +1,5 @@
 import  { useState } from "react";
-import { useAuth } from "../Hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 export const Login = () => {
   const [login, loginApi] = useState({
@@ -13,7 +13,7 @@ export const Login = () => {
     const { name, value } = e.target;
     loginApi({ ...login, [name]: value });
   };
-  const handleSubmit = maasync (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await authLogin(login);
