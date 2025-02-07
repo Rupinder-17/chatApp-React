@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { authService } from '../../services/authService';
 
 export const useAuth = () => {
+  // state to store the user, loading, and error
   const [state, setState] = useState({
     user: null,
     loading: false,
     error: null
   });
 
+  // login function to login the user
   const login = async (credentials) => {
     setState(prev => ({ ...prev, loading: true }));
     try {
@@ -20,6 +22,7 @@ export const useAuth = () => {
     }
   };
 
+  // register function to register the user
   const register = async (userData) => {
     setState(prev => ({ ...prev, loading: true }));
     try {
@@ -32,6 +35,7 @@ export const useAuth = () => {
     }
   };
 
+  // logout function to logout the user
   const logout = async () => {
     setState(prev => ({ ...prev, loading: true }));
     try {
@@ -43,5 +47,6 @@ export const useAuth = () => {
     }
   };
 
+  // return the state, login, register, and logout functions
   return { ...state, login, register, logout };
 };

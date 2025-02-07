@@ -1,6 +1,8 @@
 import { API_BASE_URL } from '../constants/endpoints';
 
 const createApiClient = () => {
+
+  // request function to fetch data from the API
   const request = async (endpoint, options = {}) => {
     const token = localStorage.getItem("token");
     

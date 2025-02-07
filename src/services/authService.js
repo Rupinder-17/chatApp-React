@@ -2,6 +2,7 @@ import { apiClient } from '../api/apiClient';
 import { ENDPOINTS } from '../constants/endpoints';
 
 export const authService = {
+  // login function to login the user
   async login(credentials) {
     try {
       const response = await apiClient.request(ENDPOINTS.AUTH.LOGIN, {
@@ -19,6 +20,7 @@ export const authService = {
     }
   },
 
+  // register function to register the user
   async register(userData) {
     try {
       const response = await apiClient.request(ENDPOINTS.AUTH.REGISTER, {
@@ -31,6 +33,7 @@ export const authService = {
     }
   },
 
+  // logout function to logout the user
   async logout() {
     try {
       await apiClient.request(ENDPOINTS.AUTH.LOGOUT);
