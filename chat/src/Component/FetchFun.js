@@ -2,7 +2,7 @@ export const fetchData = async (
   url,
   method = method || "GET",
   headers = {},
-  body = JSON.stringify()
+  body = null
 ) => {
   try {
     const options = {
@@ -11,7 +11,7 @@ export const fetchData = async (
         "Content-Type": "application/json",
         ...headers,
       },
-      ...(body&&{body: JSON.stringify(body)}),
+      body: body ?  JSON.stringify(body):null,
     };
     const resposne = await fetch(url, options);
     const result = await resposne.json();

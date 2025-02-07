@@ -19,14 +19,9 @@ export const Register = () => {
   };
   const handleSubmit =async (e) => {
     e.preventDefault();
-    console.log(await registerApi(values));
+    if(await registerApi(values)) {
       setCurrentPage("login");
-
-    // if (registerApi(values)) {
-    //   alert("Register Success");
-
-    //   return;
-    // }
+    }
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">

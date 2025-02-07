@@ -4,19 +4,22 @@ import { fetchData } from "../Component/FetchFun";
 export const useRegisterApi = () => {
   const [register, setregister] = useState();
   const url = "https://api.freeapi.app/api/v1/users/register";
-  console.log("resg",register);
+  console.log("resg", register);
 
   const registerApi = async (data) => {
     try {
       const result = await fetchData(url, "POST", {}, data);
-      if (result.success) {
-        setregister(result);
-        console.log(result);
 
-        return true;
-      } else {
-        console.log("Registration failed:", result);
+      if (result.success === false) {
+        alert("Register failed");
+        console.log("error msg",result);
+
         return false;
+      } else {
+        setregister(result);
+
+        console.log("Registration true:", result);
+        return true;
       }
     } catch (e) {
       console.log(e);
