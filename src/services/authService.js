@@ -9,9 +9,14 @@ export const authService = {
         method: 'POST',
         body: JSON.stringify(credentials)
       });
-      
-      if (response.data?.token) {
-        localStorage.setItem('token', response.data.token);
+    
+      // if the response has a token, set the token in the local storage
+      if (response.data?.accessToken) {
+        localStorage.setItem('accessToken', response.data.accessToken);
+      }
+
+      if(response.data?.user){
+        localStorage.setItem('user', JSON.stringify(response.data.user));
       }
       
       return response.data;
@@ -37,7 +42,8 @@ export const authService = {
   async logout() {
     try {
       await apiClient.request(ENDPOINTS.AUTH.LOGOUT);
-      localStorage.removeItem('token');
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('user');
     } catch (error) {
       throw new Error(error.message || 'Logout failed');
     }
