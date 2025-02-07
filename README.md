@@ -1,8 +1,38 @@
-# React + Vite
+1. File & Directory Structure
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+src/
+├── api/
+│ └── endpoints.js # API endpoint configurations
+│ └── apiClient.js # Centralized API client
+├── components/
+│ ├── common/ # Reusable components
+│ ├── layout/ # Layout components
+│ └── features/ # Feature-specific components
+├── hooks/
+│ ├── api/ # API-related hooks
+│ └── common/ # General purpose hooks
+├── context/ # Context providers
+├── utils/ # Helper functions
+├── constants/ # Constants and enums
+└── types/ # TypeScript types/interfaces
 
-Currently, two official plugins are available:
+2. File Naming Conventions
+   Use PascalCase for components: MessageList.jsx
+   Use camelCase for hooks: useMessageApi.js
+   Use kebab-case for utilities: api-client.js
+   Add .component.jsx suffix for components
+   Add .hook.js suffix for hooks
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. API Client
+   src/api/apiClient.js
+
+4. Context Providers
+   src/context/ChatContext.jsx
+
+5. Hooks
+   src/hooks/api/useAuth.js
+   src/hooks/api/useChat.js
+   src/hooks/common/useLocalStorage.js
+
+6. Constants
+   src/constants/endpoints.js

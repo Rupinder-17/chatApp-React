@@ -1,23 +1,26 @@
 import  { useState } from "react";
-import { useLogin } from "../Hooks/useLogin";
+import { useAuth } from "../Hooks/useAuth";
 
 export const Login = () => {
   const [login, loginApi] = useState({
     username: "",
     password: "",
   });
-  const [userLogin, userLoginApi] = useLogin();
-  console.log("userlogin",userLogin);
+  const { login: authLogin, loading, error } = useAuth();
+  console.log("userlogin", authLogin);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     loginApi({ ...login, [name]: value });
   };
-  const handleSubmit = (e) => {
-    alert("Login Success");
-
+  const handleSubmit = maasync (e) => {
     e.preventDefault();
-    userLoginApi(login);
+    try {
+      await authLogin(login);
+      // Handle successful login (e.g., redirect)
+    } catch (error) {
+      // Error is handled by the hook
+    }
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
