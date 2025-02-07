@@ -41,7 +41,6 @@ export const authService = {
   // logout function to logout the user
   async logout() {
     try {
-      await apiClient.request(ENDPOINTS.AUTH.LOGOUT);
       localStorage.removeItem('accessToken');
       localStorage.removeItem('user');
     } catch (error) {

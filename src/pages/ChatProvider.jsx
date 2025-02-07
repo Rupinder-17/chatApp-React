@@ -18,7 +18,7 @@ export const ChatProvider = ({ children }) => {
   const [sendMessageChat, sendMessage] = useSendMessage();
   const [allMessage, getAllMessage] = useAllMessage()
   const [deleteMessage, deleteMessageApi] = useDelete();
-  const isUserLogin = localStorage.getItem("token");
+  const isUserLogin = localStorage.getItem("accessToken");
 
   // console.log("allmsg", allMessage);
   

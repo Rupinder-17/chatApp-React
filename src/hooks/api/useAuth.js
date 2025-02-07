@@ -4,7 +4,7 @@ import { authService } from '../../services/authService';
 export const useAuth = () => {
   // state to store the user, loading, and error
   const [state, setState] = useState({
-    user: null,
+    user: JSON.parse(localStorage.getItem('user')),
     loading: false,
     error: null
   });
@@ -37,6 +37,7 @@ export const useAuth = () => {
 
   // logout function to logout the user
   const logout = async () => {
+    console.log("logout called");
     setState(prev => ({ ...prev, loading: true }));
     try {
       await authService.logout();

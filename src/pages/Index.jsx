@@ -5,13 +5,27 @@ import { Register } from "../components/Register";
 import { OnlineUser } from "./OnlineUser";
 import { Message } from "./Message";
 import { Login } from "../components/features/Login.component";
-
+import { useAuth } from "../hooks/api/useAuth";
 export const Index = () => {
   const { state } = useContextChat();
+  const {logout, user} = useAuth();
   console.log("res", state);
 
+  const confirmLogout = () => {
+    if(window.confirm("Are you sure you want to logout?")){
+      console.log("logout");
+      logout();
+      window.location.reload();
+    }
+  }
+  
   return (
-    <div>
+    <div className="relative">
+      {user && (
+        <div className="absolute top-10 right-10">
+          <button onClick={() => confirmLogout()} className="bg-red-500 text-white px-4 py-2 rounded-md">Logout</button>
+        </div>
+      )}
       {state.currentPage === "register" && <Register/>}
       {state.currentPage === "login" && <Login/>}
       {state.currentPage === "chat" && <OnlineUser/>}
