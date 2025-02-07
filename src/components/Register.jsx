@@ -112,6 +112,9 @@ export const Register = () => {
             >
               Register
             </button>
+            <div className="mt-4 text-center">
+              <span className="text-sm text-gray-500 cursor-pointer" onClick={()=>setCurrentPage("login")}>Already have an account? Login</span>
+            </div>
           </div>
         </form>
       </div>
