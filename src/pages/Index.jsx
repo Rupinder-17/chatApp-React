@@ -1,11 +1,13 @@
 import React from "react";
 import { useContextChat } from "../hooks/useContext";
-import { Register } from "../components/Register";
+// import { Register } from "../components/Register";
 // import { Login } from "./Login";
 import { OnlineUser } from "./OnlineUser";
 import { Message } from "./Message";
 import { Login } from "../components/features/Login.component";
-import { useAuth } from "../hooks/api/useAuth";
+// import { useAuth } from "../api/useAuth";
+import { RegisterCom } from "../components/features/RegisterCom";
+import { useAuth } from "../api/useAuth";
 export const Index = () => {
   const { state } = useContextChat();
   const {logout, user} = useAuth();
@@ -26,7 +28,7 @@ export const Index = () => {
           <button onClick={() => confirmLogout()} className="bg-red-500 text-white px-4 py-2 rounded-md">Logout</button>
         </div>
       )}
-      {state.currentPage === "register" && <Register/>}
+      {state.currentPage === "register" && <RegisterCom/>}
       {state.currentPage === "login" && <Login/>}
       {state.currentPage === "chat" && <OnlineUser/>}
       {state.currentPage ==="message" && <Message/>}

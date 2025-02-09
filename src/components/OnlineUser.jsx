@@ -1,5 +1,5 @@
-import React from 'react'
-import { useOnlineuser } from '../Hooks/useOnlineuser'
+import React from "react";
+import { useOnlineuser } from "../Hooks/useOnlineuser";
 
 export const OnlineUser = () => {
   const [onlineuser, onlineuserApi] = useOnlineuser();
@@ -7,10 +7,8 @@ export const OnlineUser = () => {
   console.log("online", onlineuser);
 
   React.useEffect(() => {
-    onlineuserApi()
-  }, [])
-  
-
+    onlineuserApi();
+  }, []);
 
   return (
     <div>
@@ -26,4 +24,4 @@ export const OnlineUser = () => {
       )}
     </div>
   );
-}
+};

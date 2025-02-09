@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useAuth } from '../../hooks/api/useAuth';
+// import { useAuth } from '../../hooks/api/useAuth';
 import { Button } from '../common/Button.component.jsx';
+import { useAuth } from '../../api/useAuth.js';
 
 export const Login = () => {
   const { login, loading, error } = useAuth();
