@@ -4,16 +4,17 @@ import { Button } from "../common/Button.component";
 
 export const RegisterCom = () => {
   const { register, loading, error } = useAuth();
-  const [userdata, setUserData] = useState({
-    username: "",
+  const [userData, setUserData] = useState({
     email: "",
     password: "",
-    role: "user",
+    role: "admin",
+    username: "",
   });
+console.log("userdata", userData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    register(userdata);
+    register(userData);
   };
 
   const handleChange = (e) => {
@@ -35,7 +36,7 @@ export const RegisterCom = () => {
             <input
               type="text"
               name="username"
-              value={userdata.username}
+              value={userData.username}
               onChange={handleChange}
               placeholder="Username"
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -48,7 +49,7 @@ export const RegisterCom = () => {
             <input
               type="email"
               name="email"
-              value={userdata.email}
+              value={userData.email}
               onChange={handleChange}
               placeholder="Email"
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -61,24 +62,28 @@ export const RegisterCom = () => {
             <input
               type="password"
               name="password"
-              value={userdata.password}
+              value={userData.password}
               onChange={handleChange}
               placeholder="Password"
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
-            <label className="block text-gray-600 text-sm font-medium">
+            <label
+              htmlFor="role"
+              className="block text-sm font-medium text-gray-600 mb-1"
+            >
               Role
             </label>
             <select
+              id="role"
               name="role"
-              value={userdata.role}
+              value={userData.role}
               onChange={handleChange}
-              className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
+              <option value="ADMIN">Admin</option>
+              <option value="USER">User</option>{" "}
             </select>
           </div>
           <Button

@@ -32,6 +32,8 @@ export const authService = {
         method: 'POST',
         body: JSON.stringify(userData)
       });
+      console.log("response", response);
+      
       return response.data;
     } catch (error) {
       throw new Error(error.message || 'Registration failed');

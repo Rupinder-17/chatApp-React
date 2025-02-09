@@ -6,8 +6,10 @@ import { OnlineUser } from "./OnlineUser";
 import { Message } from "./Message";
 import { Login } from "../components/features/Login.component";
 // import { useAuth } from "../api/useAuth";
-import { RegisterCom } from "../components/features/RegisterCom";
+// import { RegisterCom } from "../components/features/RegisterCom";
 import { useAuth } from "../api/useAuth";
+import { Register } from "../components/Register";
+import { RegisterCom } from "../components/features/RegisterCom";
 export const Index = () => {
   const { state } = useContextChat();
   const {logout, user} = useAuth();
