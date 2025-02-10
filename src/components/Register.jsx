@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { useContextChat } from "../hooks/useContext";
+import { usePage } from '../context/PageContext';
+import { PAGES } from '../constants/pages';
+import { useAuth } from "../hooks/api/useAuth";
 
 export const Register = () => {
-  const { state, registerApi, setCurrentPage } = useContextChat();
-  console.log("res", state);
+  
+  const { register } = useAuth();
+  const { setPage } = usePage();
 
   const [values, setValues] = useState({
     email: "",
@@ -11,23 +14,18 @@ export const Register = () => {
     role: "ADMIN",
     username: "",
   });
-  console.log("value", values);
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-  const handleSubmit =async (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(await registerApi(values));
-      setCurrentPage("login");
-
-    // if (registerApi(values)) {
-    //   alert("Register Success");
-
-    //   return;
-    // }
+    await register(values)
+    setPage(PAGES.LOGIN);
   };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -113,7 +111,12 @@ export const Register = () => {
               Register
             </button>
             <div className="mt-4 text-center">
-              <span className="text-sm text-gray-500 cursor-pointer" onClick={()=>setCurrentPage("login")}>Already have an account? Login</span>
+              <span 
+                className="text-sm text-gray-500 cursor-pointer" 
+                onClick={() => setPage(PAGES.LOGIN)}
+              >
+                Already have an account? Login
+              </span>
             </div>
           </div>
         </form>

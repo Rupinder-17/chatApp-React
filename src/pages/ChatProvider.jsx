@@ -6,6 +6,7 @@ import { useCreateChat } from "../hooks/useCreateChat";
 import { useSendMessage } from "../hooks/useSendMessage";
 import { useAllMessage } from "../hooks/useAllMessage";
 import { useDelete } from "../hooks/useDelete";
+import { PageProvider } from '../context/PageContext';
 
 export const ChatContent = createContext();
 
@@ -39,6 +40,10 @@ export const ChatProvider = ({ children }) => {
   };
 
   return (
-    <ChatContent.Provider value={chatDisplay}>{children}</ChatContent.Provider>
+    <PageProvider>
+      <ChatContent.Provider value={chatDisplay}>
+        {children}
+      </ChatContent.Provider>
+    </PageProvider>
   );
 };

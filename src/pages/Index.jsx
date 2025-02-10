@@ -1,15 +1,13 @@
-import React from "react";
-import { useContextChat } from "../hooks/useContext";
 import { Register } from "../components/Register";
-// import { Login } from "./Login";
-import { OnlineUser } from "./OnlineUser";
-import { Message } from "./Message";
 import { Login } from "../components/features/Login.component";
 import { useAuth } from "../hooks/api/useAuth";
+import { usePage } from '../context/PageContext';
+import { PAGES } from '../constants/pages';
+
 export const Index = () => {
-  const { state } = useContextChat();
+
   const {logout, user} = useAuth();
-  console.log("res", state);
+  const { currentPage } = usePage();
 
   const confirmLogout = () => {
     if(window.confirm("Are you sure you want to logout?")){
@@ -26,10 +24,11 @@ export const Index = () => {
           <button onClick={() => confirmLogout()} className="bg-red-500 text-white px-4 py-2 rounded-md">Logout</button>
         </div>
       )}
-      {state.currentPage === "register" && <Register/>}
-      {state.currentPage === "login" && <Login/>}
-      {state.currentPage === "chat" && <OnlineUser/>}
-      {state.currentPage ==="message" && <Message/>}
+      {/* check if user is login then show login page */}
+      {currentPage === PAGES.REGISTER && <Register/>}
+
+      {/* check if user is not login then show register page */}
+      {currentPage === PAGES.LOGIN && <Login/>}
     </div>
   );
 };
