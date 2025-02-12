@@ -14,7 +14,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       await login(credentials);
-      window.location.reload();
+      // window.location.reload();
       // Handle successful login (e.g., redirect)
     } catch (error) {
       console.error('Login failed:', error);

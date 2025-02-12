@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { usePage } from '../context/PageContext';
 import { PAGES } from '../constants/pages';
-import { useAuth } from "../hooks/api/useAuth";
+// import { useAuth } from "../hooks/api/useAuth";
+import { useAuth } from "../api/useAuth";
 
 export const Register = () => {
   
@@ -23,7 +24,7 @@ export const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await register(values)
-    setPage(PAGES.LOGIN);
+    // setPage(PAGES.LOGIN);
   };
 
   return (
@@ -113,7 +114,7 @@ export const Register = () => {
             <div className="mt-4 text-center">
               <span 
                 className="text-sm text-gray-500 cursor-pointer" 
-                onClick={() => setPage(PAGES.LOGIN)}
+                // onClick={() => setPage(PAGES.LOGIN)}
               >
                 Already have an account? Login
               </span>

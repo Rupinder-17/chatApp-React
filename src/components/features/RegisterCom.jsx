@@ -1,20 +1,39 @@
 import { useState } from "react";
 import { useAuth } from "../../api/useAuth";
 import { Button } from "../common/Button.component";
+import { usePage } from "../../context/PageContext";
+import { PAGES } from "../../constants/pages";
 
 export const RegisterCom = () => {
   const { register, loading, error } = useAuth();
+  const { setCurrentPage } = usePage();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
-    role: "admin",
+    role: "ADMIN",
     username: "",
   });
-console.log("userdata", userData);
+  console.log("userdata", userData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    register(userData);
+    try {
+      console.log("submittion");
+
+      const res = await register(userData);
+      console.log("res", res);
+        setCurrentPage(PAGES.LOGIN);
+
+      // if (res && !error) {
+      //   console.log("navigation");
+
+      //   setCurrentPage(PAGES.LOGIN);
+      // }
+      // return true;
+    } catch (error) {
+      console.log("error", error);
+      // return false;
+    }
     // window.location.reload();
   };
 
@@ -83,7 +102,7 @@ console.log("userdata", userData);
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="ADMIN">Admin</option>
+              <option value="">Admin</option>
               <option value="USER">User</option>{" "}
             </select>
           </div>

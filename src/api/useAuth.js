@@ -30,8 +30,13 @@ export const useAuth = () => {
       const response = await authService.register(userData);
       setState({ user: null, loading: false, error: null });
       console.log("responseRes", response);
-      
-      return response;
+      if(response.ok){
+        return true;
+      }
+      else{
+        return false
+      }
+      // return response;
     } catch (error) {
       setState({ user: null, loading: false, error });
       throw error;
