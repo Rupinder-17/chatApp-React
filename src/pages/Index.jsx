@@ -1,4 +1,3 @@
-import React from "react";
 import { useContextChat } from "../hooks/useContext";
 // import { Register } from "../components/Register";
 // import { Login } from "./Login";
@@ -8,7 +7,7 @@ import { Login } from "../components/features/Login.component";
 // import { useAuth } from "../api/useAuth";
 // import { RegisterCom } from "../components/features/RegisterCom";
 import { useAuth } from "../api/useAuth";
-import { Register } from "../components/Register";
+// import { Register } from "../components/Register";
 import { RegisterCom } from "../components/features/RegisterCom";
 export const Index = () => {
   const { state } = useContextChat();

@@ -15,6 +15,7 @@ console.log("userdata", userData);
   const handleSubmit = async (e) => {
     e.preventDefault();
     register(userData);
+    // window.location.reload();
   };
 
   const handleChange = (e) => {
