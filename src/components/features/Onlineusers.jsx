@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useChat } from "../../api/useChat";
 import { usePage } from "../../context/PageContext";
 import { PAGES } from "../../constants/pages";
 
 export const OnlineUsers = () => {
-  const { onlineUsers, loading, error, fetchOnlineUsers } = useChat();
-  const{ setCurrentPage} = usePage()
+  const { onlineUsers, loading, error, fetchOnlineUsers, createChat } =
+    useChat();
+  const { setCurrentPage } = usePage();
 
   useEffect(() => {
     console.log("Fetching online users...");
@@ -13,12 +14,11 @@ export const OnlineUsers = () => {
   }, []);
 
   const handleCreateChat = (userId) => {
-    console.log("Creating chat with user", userId);
-    localStorage.setItem("chatUserId", userId);
-    setCurrentPage(PAGES.CHAT)
-
-  }
-
+    console.log("recevierId", userId);
+    localStorage.setItem("recevierId", userId);
+     createChat(userId);
+    setCurrentPage(PAGES.CHAT);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
@@ -32,7 +32,7 @@ export const OnlineUsers = () => {
 
         <ul className="divide-y divide-gray-200">
           {onlineUsers?.length > 0 ? (
-            onlineUsers.map((user,index) => (
+            onlineUsers.map((user, index) => (
               <li
                 key={index}
                 className="flex items-center justify-between p-3 hover:bg-gray-100 transition duration-300 rounded-lg"
@@ -41,7 +41,10 @@ export const OnlineUsers = () => {
                   <div className="w-10 h-10 bg-green-400 text-white rounded-full flex items-center justify-center font-bold">
                     {user.username.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-gray-700 font-medium" onClick={() => handleCreateChat(user._id)}>
+                  <span
+                    className="text-gray-700 font-medium"
+                    onClick={() => handleCreateChat(user._id)}
+                  >
                     {user.username}
                   </span>
                 </div>

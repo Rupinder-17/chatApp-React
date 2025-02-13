@@ -1,4 +1,4 @@
-import { useState, } from "react";
+import { useState } from "react";
 import { chatService } from "../services/chatService";
 
 export const useChat = () => {
@@ -10,6 +10,7 @@ export const useChat = () => {
     loading: false,
     error: null,
   });
+  // console.log("state", chatState.chats);
 
   // Helper function to update state
   const updateState = (updates) => {
@@ -21,9 +22,8 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const users = await chatService.getOnlineUsers();
-      console.log("usrs",users);
+      console.log("usrs", users);
       updateState({ onlineUsers: users, error: null });
-      
     } catch (err) {
       updateState({ error: err.message });
     } finally {
@@ -33,10 +33,16 @@ export const useChat = () => {
 
   // Create a new chat
   const createChat = async (userId) => {
+    // const userId = localStorage.getItem("recevierId");
+
+    console.log("myid", userId);
+
     updateState({ loading: true });
-    
+
     try {
       const newChat = await chatService.createChat(userId);
+      console.log("newChat", newChat._id);
+      localStorage.setItem("chatId", newChat._id);
       updateState({
         chats: [...chatState.chats, newChat],
         activeChatId: newChat.id,
@@ -50,6 +56,7 @@ export const useChat = () => {
   };
 
   const fetchMessages = async (chatId) => {
+    
     updateState({ loading: true });
     try {
       const chatMessages = await chatService.getMessages(chatId);
@@ -70,6 +77,8 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const newMessage = await chatService.sendMessage(chatId, content);
+      console.log("newmess", newMessage);
+
       updateState({
         messages: [...chatState.messages, newMessage],
         error: null,

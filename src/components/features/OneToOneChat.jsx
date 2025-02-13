@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useChat } from "../../api/useChat";
 import { Button } from "../common/Button.component";
 
 export const OneToOneChat = () => {
-  const { createChat } = useChat();
+  const { createChat, fetchMessages, sendMessage } = useChat();
   const [inputValue, setInputValue] = useState("");
 
-  const handleSendChat = () => {
-    if (!inputValue.trim()) return;
-    createChat(inputValue);
-    setInputValue(""); // Clear input after sending
+  const handleSendChat = async () => {
+    if (!inputValue.trim()) {
+      alert("enter valid id");
+
+      return;
+    }
+    const newChat = await createChat(inputValue);
+
+    await fetchMessages(newChat.id);
+    await sendMessage(newChat.id, inputValue);
+
+    setInputValue("");
+    // createChat();
+    // sendMessage(inputValue);
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <div className="flex flex-col h-screen w-96 m-auto bg-gray-100">
       {/* Header */}
       <div className="bg-blue-500 text-white text-lg font-semibold p-4 shadow-md text-center">
         One-to-One Chat
@@ -34,10 +44,7 @@ export const OneToOneChat = () => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <Button
-          onClick={handleSendChat}
-          className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-        >
+        <Button onClick={() => handleSendChat()} className="">
           Send
         </Button>
       </div>

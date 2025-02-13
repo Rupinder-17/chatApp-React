@@ -13,12 +13,12 @@ export const RegisterCom = () => {
     role: "ADMIN",
     username: "",
   });
-  console.log("userdata", userData);
+  // console.log("userdata", userData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("submittion");
+      // console.log("submittion");
 
       const res = await register(userData);
       console.log("res", res);

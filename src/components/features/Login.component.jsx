@@ -15,13 +15,13 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hello");
+    // console.log("hello");
     
     try {
-      console.log("rupi");
+      // console.log("rupi");
       
       await login(credentials);
-      console.log("bye");
+      // console.log("bye");
       
       setCurrentPage(PAGES.ONLINEUSERS)
     } catch (error) {
