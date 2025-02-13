@@ -1,15 +1,13 @@
-import { Register } from "../components/Register";
 import { PAGES } from "../constants/pages";
 import { usePage } from "../context/PageContext";
 import { Login } from "../components/features/Login.component";
 import { useAuth } from "../api/useAuth";
 import { RegisterCom } from "../components/features/RegisterCom";
-import { Onlineusers } from "../components/features/Onlineusers";
+import { OnlineUsers,} from "../components/features/Onlineusers";
 
 export const Index = () => {
   const { user, logout } = useAuth();
   const { currentPage } = usePage();
-  
 
   const confirmLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
@@ -35,7 +33,7 @@ export const Index = () => {
       {currentPage === PAGES.REGISTER && <RegisterCom />}
 
       {currentPage === PAGES.LOGIN && <Login />}
-      {currentPage === PAGES.ONLINEUSERS && <Onlineusers />}
+      {currentPage === PAGES.ONLINEUSERS && <OnlineUsers />}
     </div>
   );
 };

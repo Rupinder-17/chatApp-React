@@ -7,7 +7,7 @@ import { PAGES } from '../../constants/pages.js';
 
 export const Login = () => {
   const { login, loading, error } = useAuth();
-  const {setCurrentpage} = usePage()
+  const { setCurrentPage } = usePage()
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
@@ -15,9 +15,15 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("hello");
+    
     try {
+      console.log("rupi");
+      
       await login(credentials);
-      setCurrentpage(PAGES.ONLINEUSERS)
+      console.log("bye");
+      
+      setCurrentPage(PAGES.ONLINEUSERS)
     } catch (error) {
       console.error('Login failed:', error);
     }
