@@ -2,9 +2,12 @@ import { useState } from 'react';
 // import { useAuth } from '../../hooks/api/useAuth';
 import { Button } from '../common/Button.component.jsx';
 import { useAuth } from '../../api/useAuth.js';
+import { usePage } from '../../context/PageContext.jsx';
+import { PAGES } from '../../constants/pages.js';
 
 export const Login = () => {
   const { login, loading, error } = useAuth();
+  const {setCurrentpage} = usePage()
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
@@ -14,8 +17,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       await login(credentials);
-      // window.location.reload();
-      // Handle successful login (e.g., redirect)
+      setCurrentpage(PAGES.ONLINEUSERS)
     } catch (error) {
       console.error('Login failed:', error);
     }

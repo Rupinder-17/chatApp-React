@@ -4,6 +4,7 @@ import { usePage } from "../context/PageContext";
 import { Login } from "../components/features/Login.component";
 import { useAuth } from "../api/useAuth";
 import { RegisterCom } from "../components/features/RegisterCom";
+import { Onlineusers } from "../components/features/Onlineusers";
 
 export const Index = () => {
   const { user, logout } = useAuth();
@@ -34,6 +35,7 @@ export const Index = () => {
       {currentPage === PAGES.REGISTER && <RegisterCom />}
 
       {currentPage === PAGES.LOGIN && <Login />}
+      {currentPage === PAGES.ONLINEUSERS && <Onlineusers />}
     </div>
   );
 };

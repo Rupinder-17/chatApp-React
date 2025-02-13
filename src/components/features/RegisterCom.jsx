@@ -22,7 +22,7 @@ export const RegisterCom = () => {
 
       const res = await register(userData);
       console.log("res", res);
-        setCurrentPage(PAGES.LOGIN);
+      setCurrentPage(PAGES.LOGIN);
 
       // if (res && !error) {
       //   console.log("navigation");
