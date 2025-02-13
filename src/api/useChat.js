@@ -3,7 +3,7 @@ import { chatService } from "../services/chatService";
 
 export const useChat = () => {
   const [chatState, setChatState] = useState({
-    onlineUsers: [],
+    onlineUsers: {},
     chats: [],
     messages: [],
     activeChatId: null,
@@ -21,7 +21,9 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const users = await chatService.getOnlineUsers();
+      console.log("usrs",users);
       updateState({ onlineUsers: users, error: null });
+      
     } catch (err) {
       updateState({ error: err.message });
     } finally {
@@ -32,6 +34,7 @@ export const useChat = () => {
   // Create a new chat
   const createChat = async (userId) => {
     updateState({ loading: true });
+    
     try {
       const newChat = await chatService.createChat(userId);
       updateState({
@@ -46,7 +49,6 @@ export const useChat = () => {
     }
   };
 
-  // Fetch messages for a chat
   const fetchMessages = async (chatId) => {
     updateState({ loading: true });
     try {

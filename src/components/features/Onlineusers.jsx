@@ -1,13 +1,24 @@
 import React, { useEffect } from "react";
 import { useChat } from "../../api/useChat";
+import { usePage } from "../../context/PageContext";
+import { PAGES } from "../../constants/pages";
 
 export const OnlineUsers = () => {
   const { onlineUsers, loading, error, fetchOnlineUsers } = useChat();
+  const{ setCurrentPage} = usePage()
 
   useEffect(() => {
     console.log("Fetching online users...");
     fetchOnlineUsers();
   }, []);
+
+  const handleCreateChat = (userId) => {
+    console.log("Creating chat with user", userId);
+    localStorage.setItem("chatUserId", userId);
+    setCurrentPage(PAGES.CHAT)
+
+  }
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
@@ -30,7 +41,7 @@ export const OnlineUsers = () => {
                   <div className="w-10 h-10 bg-green-400 text-white rounded-full flex items-center justify-center font-bold">
                     {user.username.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-gray-700 font-medium">
+                  <span className="text-gray-700 font-medium" onClick={() => handleCreateChat(user._id)}>
                     {user.username}
                   </span>
                 </div>

@@ -4,6 +4,7 @@ import { Login } from "../components/features/Login.component";
 import { useAuth } from "../api/useAuth";
 import { RegisterCom } from "../components/features/RegisterCom";
 import { OnlineUsers,} from "../components/features/Onlineusers";
+import { OneToOneChat } from "../components/features/OneToOneChat";
 
 export const Index = () => {
   const { user, logout } = useAuth();
@@ -34,6 +35,7 @@ export const Index = () => {
 
       {currentPage === PAGES.LOGIN && <Login />}
       {currentPage === PAGES.ONLINEUSERS && <OnlineUsers />}
+      {currentPage === PAGES.CHAT && <OneToOneChat/>}
     </div>
   );
 };

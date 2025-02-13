@@ -2,6 +2,6 @@ export const PAGES = {
   REGISTER: 'register',
   LOGIN: 'login',
   ONLINEUSERS: 'onlineusers',
-  CHAT: 'chat',
+  CHAT: 'onetoonechat',
   MESSAGES: 'messages'
 }; 

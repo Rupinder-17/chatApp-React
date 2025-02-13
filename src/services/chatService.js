@@ -5,6 +5,9 @@ export const chatService = {
   async getOnlineUsers() {
     try {
       const response = await apiClient.request(ENDPOINTS.USERS.GET_ONLINE_USERS);
+      console.log("resp",response.data);
+      // localStorage.setItem("users",JSON.stringify(response.data))
+      
       return response.data;
     } catch (error) {
       throw new Error(error.message || 'Failed to fetch online users');
@@ -16,6 +19,7 @@ export const chatService = {
       const response = await apiClient.request(ENDPOINTS.CHAT.CREATE_CHAT(userId), {
         method: 'POST'
       });
+      
       return response.data;
     } catch (error) {
       throw new Error(error.message || 'Failed to create chat');
