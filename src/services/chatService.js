@@ -16,7 +16,6 @@ export const chatService = {
   },
 
   async createChat(userId) {
-    // console.log("id", userId);
 
     try {
       const response = await apiClient.request(

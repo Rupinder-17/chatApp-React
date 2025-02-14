@@ -10,14 +10,12 @@ export const useChat = () => {
     loading: false,
     error: null,
   });
-  // console.log("state", chatState.chats);
+  console.log("chatsccc", chatState);
 
-  // Helper function to update state
   const updateState = (updates) => {
     setChatState((prev) => ({ ...prev, ...updates }));
   };
 
-  // Fetch online users
   const fetchOnlineUsers = async () => {
     updateState({ loading: true });
     try {
@@ -33,7 +31,6 @@ export const useChat = () => {
 
   // Create a new chat
   const createChat = async (userId) => {
-    // const userId = localStorage.getItem("recevierId");
 
     console.log("myid", userId);
 
@@ -56,7 +53,6 @@ export const useChat = () => {
   };
 
   const fetchMessages = async (chatId) => {
-    
     updateState({ loading: true });
     try {
       const chatMessages = await chatService.getMessages(chatId);
@@ -106,11 +102,7 @@ export const useChat = () => {
     }
   };
 
-  // Fetch online users when the hook is initialized
-  // useEffect(() => {
-  //   fetchOnlineUsers();
-  // }, []);
-
+  
   return {
     ...chatState,
     fetchOnlineUsers,

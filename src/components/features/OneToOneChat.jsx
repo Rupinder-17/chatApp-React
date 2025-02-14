@@ -3,39 +3,54 @@ import { useChat } from "../../api/useChat";
 import { Button } from "../common/Button.component";
 
 export const OneToOneChat = () => {
-  const { createChat, fetchMessages, sendMessage } = useChat();
+  const { messages, fetchMessages, sendMessage } = useChat();
+
   const [inputValue, setInputValue] = useState("");
+  const chatId = localStorage.getItem("chatId");
+  const recevierId = localStorage.getItem("recevierId");
+  // console.log("state", chatState);
+  
 
   const handleSendChat = async () => {
-    if (!inputValue.trim()) {
-      alert("enter valid id");
+    
+    // const newChat = await createChat(recevierId);
+    // console.log("new", newChat);
 
-      return;
-    }
-    const newChat = await createChat(inputValue);
-
-    await fetchMessages(newChat.id);
-    await sendMessage(newChat.id, inputValue);
+    await sendMessage(chatId, inputValue);
+    await fetchMessages(chatId);
 
     setInputValue("");
-    // createChat();
-    // sendMessage(inputValue);
   };
 
   return (
     <div className="flex flex-col h-screen w-96 m-auto bg-gray-100">
-      {/* Header */}
       <div className="bg-blue-500 text-white text-lg font-semibold p-4 shadow-md text-center">
         One-to-One Chat
       </div>
 
-      {/* Chat Box */}
       <div className="flex-1 p-4 overflow-y-auto">
-        <p className="text-center text-gray-500">No messages yet</p>
-        {/* Add messages dynamically here */}
+         {messages?.length > 0 ? (
+          messages?.map((msg, index) => (
+            <div
+              key={index}
+              className={`p-2 my-2 rounded-lg ${
+                msg.senderId === recevierId
+                  ? "bg-gray-300 text-black self-start"
+                  : "bg-blue-500 text-white self-end"
+              }`} 
+     > 
+        {msg.content}
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-500">No messages yet</p>
+        )} 
+
+        <div className="flex-1 p-4 overflow-y-auto">
+          <p className="text-center text-gray-500">No messages yet</p>
+        </div>
       </div>
 
-      {/* Input Box */}
       <div className="p-4 bg-white shadow-lg flex items-center">
         <input
           type="text"
