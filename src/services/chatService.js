@@ -1,7 +1,9 @@
 import { apiClient } from "../api/apiClient";
 import { ENDPOINTS } from "../constants/endpoints";
 
+
 export const chatService = {
+
   async getOnlineUsers() {
     try {
       const response = await apiClient.request(
@@ -56,8 +58,9 @@ export const chatService = {
       throw new Error(error.message || "Failed to send message");
     }
   },
-
   async deleteMessage(chatId, messageId) {
+//  const messageId = localStorage.getItem("messageId");
+
     try {
       await apiClient.request(
         ENDPOINTS.MESSAGES.DELETE_MESSAGE(chatId, messageId),

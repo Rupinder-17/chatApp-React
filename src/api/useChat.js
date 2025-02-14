@@ -87,6 +87,7 @@ export const useChat = () => {
   };
 
   // Delete a message
+ 
   const deleteMessage = async (chatId, messageId) => {
     updateState({ loading: true });
     try {

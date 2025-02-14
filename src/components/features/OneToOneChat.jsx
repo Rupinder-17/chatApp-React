@@ -1,23 +1,33 @@
 import { useState } from "react";
 import { useChat } from "../../api/useChat";
 import { Button } from "../common/Button.component";
+import { FiSend, FiTrash } from "react-icons/fi";
 
 export const OneToOneChat = () => {
-  const { messages, fetchMessages, sendMessage } = useChat();
+  const { messages, fetchMessages, sendMessage, deleteMessage } = useChat();
 
   const [inputValue, setInputValue] = useState("");
   const chatId = localStorage.getItem("chatId");
+
+  
 
   const handleSendChat = async () => {
 
     await sendMessage(chatId, inputValue);
     await fetchMessages(chatId);
     setInputValue("");
-    
+
   };
 
+  const handleDelete = async (messageId)=>{
+    console.log("del", messageId);
+    
+   await deleteMessage(chatId,messageId)
+   await fetchMessages(chatId)
+  }
+
   return (
-    <div className="flex flex-col h-screen w-96 m-auto bg-gray-100">
+    <div className="flex flex-col h-screen w-[40%] m-auto bg-gray-100">
       <div className="bg-blue-500 text-white text-lg font-semibold p-4 shadow-md text-center">
         One-to-One Chat
       </div>
@@ -33,7 +43,14 @@ export const OneToOneChat = () => {
                   : "bg-blue-500 text-white text-left"
               }`}
             >
-              {msg.content}
+              <ul>
+                <li>
+                  <p>{msg.content}</p>
+                  <button onClick={() => handleDelete(msg._id)}>
+                    <FiTrash size={18} />
+                  </button>
+                </li>
+              </ul>
             </div>
           ))
         ) : (
@@ -41,17 +58,19 @@ export const OneToOneChat = () => {
         )}
       </div>
 
-      <div className="p-4 bg-white shadow-lg flex items-center">
+      <div className="p-4 w-[] bg-white shadow-lg flex items-center">
         <input
           type="text"
-          className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 border w-[] border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Type your message..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <Button onClick={() => handleSendChat()} className="">
-          Send
-        </Button>
+        <div>
+          <Button onClick={() => handleSendChat()} className="">
+            <FiSend className="ml-2" size={18} />
+          </Button>
+        </div>
       </div>
     </div>
   );

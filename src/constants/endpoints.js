@@ -1,10 +1,7 @@
 export const API_BASE_URL = "https://api.freeapi.app/api/v1";
-// const chatId = localStorage.getItem("chatId")
-// console.log("chatid",chatId);
-
-  // const userId = localStorage.getItem("chatId");
 
 export const ENDPOINTS = {
+
   AUTH: {
     LOGIN: "/users/login",
     REGISTER: "/users/register",
