@@ -7,19 +7,13 @@ export const OneToOneChat = () => {
 
   const [inputValue, setInputValue] = useState("");
   const chatId = localStorage.getItem("chatId");
-  const recevierId = localStorage.getItem("recevierId");
-  // console.log("state", chatState);
-  
 
   const handleSendChat = async () => {
-    
-    // const newChat = await createChat(recevierId);
-    // console.log("new", newChat);
 
     await sendMessage(chatId, inputValue);
     await fetchMessages(chatId);
-
     setInputValue("");
+    
   };
 
   return (
@@ -29,26 +23,22 @@ export const OneToOneChat = () => {
       </div>
 
       <div className="flex-1 p-4 overflow-y-auto">
-         {messages?.length > 0 ? (
+        {messages?.length > 0 ? (
           messages?.map((msg, index) => (
             <div
               key={index}
               className={`p-2 my-2 rounded-lg ${
-                msg.senderId === recevierId
-                  ? "bg-gray-300 text-black self-start"
-                  : "bg-blue-500 text-white self-end"
-              }`} 
-     > 
-        {msg.content}
+                msg.sender._Id === msg.id
+                  ? "bg-gray-300 text-black text-right "
+                  : "bg-blue-500 text-white text-left"
+              }`}
+            >
+              {msg.content}
             </div>
           ))
         ) : (
           <p className="text-center text-gray-500">No messages yet</p>
-        )} 
-
-        <div className="flex-1 p-4 overflow-y-auto">
-          <p className="text-center text-gray-500">No messages yet</p>
-        </div>
+        )}
       </div>
 
       <div className="p-4 bg-white shadow-lg flex items-center">
