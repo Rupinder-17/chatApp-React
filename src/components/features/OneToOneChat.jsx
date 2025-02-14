@@ -9,22 +9,18 @@ export const OneToOneChat = () => {
   const [inputValue, setInputValue] = useState("");
   const chatId = localStorage.getItem("chatId");
 
-  
-
   const handleSendChat = async () => {
-
     await sendMessage(chatId, inputValue);
     await fetchMessages(chatId);
     setInputValue("");
-
   };
 
-  const handleDelete = async (messageId)=>{
+  const handleDelete = async (messageId) => {
     console.log("del", messageId);
-    
-   await deleteMessage(chatId,messageId)
-   await fetchMessages(chatId)
-  }
+
+    await deleteMessage(chatId, messageId);
+    await fetchMessages(chatId);
+  };
 
   return (
     <div className="flex flex-col h-screen w-[40%] m-auto bg-gray-100">
