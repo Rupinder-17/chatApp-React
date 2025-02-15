@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useChat } from "../../api/useChat";
 import { usePage } from "../../context/PageContext";
 import { PAGES } from "../../constants/pages";
@@ -7,6 +7,11 @@ export const OnlineUsers = () => {
   const { onlineUsers, loading, error, fetchOnlineUsers, createChat } =
     useChat();
   const { setCurrentPage } = usePage();
+  const [addGroup, setAddGroup] = useState()
+
+  const handleCheckboxChange = () => {
+    setAddGroup((prev) => !prev); 
+  };
 
   useEffect(() => {
     console.log("Fetching online users...");
@@ -38,7 +43,13 @@ export const OnlineUsers = () => {
                 className="flex items-center justify-between p-3 hover:bg-gray-100 transition duration-300 rounded-lg"
               >
                 <div className="flex items-center space-x-3">
-                  <input type="checkbox" name="" id="" />
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={addGroup}
+                      onChange={handleCheckboxChange}
+                    />
+                  </div>
                   <div className="w-10 h-10 bg-green-400 text-white rounded-full flex items-center justify-center font-bold">
                     {user.username.charAt(0).toUpperCase()}
                   </div>

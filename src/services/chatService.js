@@ -1,9 +1,7 @@
 import { apiClient } from "../api/apiClient";
 import { ENDPOINTS } from "../constants/endpoints";
 
-
 export const chatService = {
-
   async getOnlineUsers() {
     try {
       const response = await apiClient.request(
@@ -18,7 +16,6 @@ export const chatService = {
   },
 
   async createChat(userId) {
-
     try {
       const response = await apiClient.request(
         ENDPOINTS.CHAT.CREATE_CHAT(userId),
@@ -59,7 +56,7 @@ export const chatService = {
     }
   },
   async deleteMessage(chatId, messageId) {
-//  const messageId = localStorage.getItem("messageId");
+    //  const messageId = localStorage.getItem("messageId");
 
     try {
       await apiClient.request(
@@ -72,16 +69,15 @@ export const chatService = {
       throw new Error(error.message || "Failed to delete message");
     }
   },
-  async groupMessage(){
-    try{
+  async groupMessage(recevierId) {
+    try {
       await apiClient.request(ENDPOINTS.GROUP.CREATE_GROUP),
-      {
-        method: "POST"
-
-      }
-    }catch(e){
-      console.log(e);
-      
+        {
+          method: "POST",
+          body: {recevierId}
+        };
+    } catch (error) {
+      throw new Error(error.message || "Failed to delete message");
     }
-  }
+  },
 };
