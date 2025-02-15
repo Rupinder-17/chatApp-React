@@ -72,4 +72,16 @@ export const chatService = {
       throw new Error(error.message || "Failed to delete message");
     }
   },
+  async groupMessage(){
+    try{
+      await apiClient.request(ENDPOINTS.GROUP.CREATE_GROUP),
+      {
+        method: "POST"
+
+      }
+    }catch(e){
+      console.log(e);
+      
+    }
+  }
 };

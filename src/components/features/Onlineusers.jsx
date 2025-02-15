@@ -16,7 +16,7 @@ export const OnlineUsers = () => {
   const handleCreateChat = (userId) => {
     console.log("recevierId", userId);
     localStorage.setItem("recevierId", userId);
-     createChat(userId);
+    createChat(userId);
     setCurrentPage(PAGES.CHAT);
   };
 
@@ -38,6 +38,7 @@ export const OnlineUsers = () => {
                 className="flex items-center justify-between p-3 hover:bg-gray-100 transition duration-300 rounded-lg"
               >
                 <div className="flex items-center space-x-3">
+                  <input type="checkbox" name="" id="" />
                   <div className="w-10 h-10 bg-green-400 text-white rounded-full flex items-center justify-center font-bold">
                     {user.username.charAt(0).toUpperCase()}
                   </div>

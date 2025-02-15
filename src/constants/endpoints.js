@@ -1,7 +1,6 @@
 export const API_BASE_URL = "https://api.freeapi.app/api/v1";
 
 export const ENDPOINTS = {
-
   AUTH: {
     LOGIN: "/users/login",
     REGISTER: "/users/register",
@@ -14,9 +13,13 @@ export const ENDPOINTS = {
   MESSAGES: {
     GET_MESSAGES: (chatId) => `/chat-app/messages/${chatId}`,
     SEND_MESSAGE: (chatId) => `/chat-app/messages/${chatId}`,
-    DELETE_MESSAGE: (chatId, messageId) => `/chat-app/messages/${chatId}/${messageId}`,
+    DELETE_MESSAGE: (chatId, messageId) =>
+      `/chat-app/messages/${chatId}/${messageId}`,
   },
   USERS: {
-    GET_ONLINE_USERS: "/chat-app/chats/users"
+    GET_ONLINE_USERS: "/chat-app/chats/users",
+  },
+  GROUP: {
+    CREATE_GROUP: "/chat-app/chats/group",
   },
 }; 
