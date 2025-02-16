@@ -2,17 +2,30 @@ import { useEffect, useState } from "react";
 import { useChat } from "../../api/useChat";
 import { usePage } from "../../context/PageContext";
 import { PAGES } from "../../constants/pages";
+import { Button } from "../common/Button.component";
+ const chatId = localStorage.getItem("chatId");
 
+// const recevierId = localStorage.getItem("recevierId");
 export const OnlineUsers = () => {
-  const { onlineUsers, loading, error, fetchOnlineUsers, createChat } =
-    useChat();
+  const {
+    onlineUsers,
+    loading,
+    error,
+    fetchOnlineUsers,
+    createChat,
+    createGroup,
+  } = useChat();
   const { setCurrentPage } = usePage();
-  const [addGroup, setAddGroup] = useState()
-
-  const handleCheckboxChange = () => {
-    setAddGroup((prev) => !prev); 
+  const [addGroup, setAddGroup] = useState([]);
+  console.log("addgroup", addGroup);
+  
+  const handleCheckboxChange = (userId) => {
+    setAddGroup((prev) => ({...prev, [userId]:!prev[userId]}) );
   };
-
+  const handleGroup = () => {
+    createChat(chatId)
+  createGroup(addGroup);
+};
   useEffect(() => {
     console.log("Fetching online users...");
     fetchOnlineUsers();
@@ -34,7 +47,12 @@ export const OnlineUsers = () => {
 
         {loading && <p className="text-center text-gray-500">Loading...</p>}
         {error && <p className="text-red-500 text-center">Error: {error}</p>}
-
+        <div>
+          <Button className={addGroup  ? "visible" : "hidden"}
+          onClick={handleGroup} >
+            Create group
+          </Button>
+        </div>
         <ul className="divide-y divide-gray-200">
           {onlineUsers?.length > 0 ? (
             onlineUsers.map((user, index) => (
@@ -46,8 +64,9 @@ export const OnlineUsers = () => {
                   <div>
                     <input
                       type="checkbox"
-                      checked={addGroup}
-                      onChange={handleCheckboxChange}
+                      checked={!addGroup[user._id]}
+                      onChange={()=>handleCheckboxChange(user._id)}
+                      // className={addGroup ? "visible" : "hidden"}
                     />
                   </div>
                   <div className="w-10 h-10 bg-green-400 text-white rounded-full flex items-center justify-center font-bold">

@@ -6,6 +6,7 @@ export const useChat = () => {
     onlineUsers: {},
     chats: [],
     messages: [],
+    group:[],
     activeChatId: null,
     loading: false,
     error: null,
@@ -102,6 +103,22 @@ export const useChat = () => {
       updateState({ loading: false });
     }
   };
+  const createGroup = async (recevierId)=>{
+    updateState({loading: true});
+    try{
+       const  groupuser = await chatService.createGroup(recevierId)
+       console.log("groupusers",groupuser);
+       
+      updateState({group:[...chatState.group,groupuser ]})
+    }
+    catch(error){
+      updateState({error:error.message});
+    }
+    finally{
+      updateState({loading:false})
+    }
+
+  }
 
   
   return {
@@ -111,5 +128,6 @@ export const useChat = () => {
     fetchMessages,
     sendMessage,
     deleteMessage,
+    createGroup,
   };
 };
