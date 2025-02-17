@@ -32,11 +32,11 @@ export const Login = () => {
           Login
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-         
+
           <div className="space-y-2">
             <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
             <input
-            name='username'
+              name='username'
               type="text"
               id="username"
               value={credentials.username}
@@ -48,7 +48,7 @@ export const Login = () => {
           <div className="space-y-2">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input
-              name='password' 
+              name='password'
               type="password"
               id="password"
               value={credentials.password}
@@ -61,6 +61,10 @@ export const Login = () => {
             Login
           </Button>
         </form>
+        {/* Register link */}
+        <p className="mt-4 text-center text-sm text-gray-500">
+          Don{"'"}t have an account? <a href="/register" className="underline text-blue-500">Register</a>
+        </p>
         <div className="mt-4 text-center">
           {error && <div className="text-red-500 text-sm border border-red-500 rounded-md p-2 bg-red-100">{error.message || 'An error occurred during login'}</div>}
         </div>

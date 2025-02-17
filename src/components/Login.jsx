@@ -1,5 +1,6 @@
-import  { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
+import { useState } from "react";
+import { useAuth } from "../hooks/api/useAuth";
+import { Link, useNavigate } from "react-router";
 
 export const Login = () => {
   const [login, loginApi] = useState({
@@ -7,6 +8,7 @@ export const Login = () => {
     password: "",
   });
   const { login: authLogin, loading, error } = useAuth();
+  let navigate = useNavigate();
   console.log("userlogin", authLogin);
 
   const handleChange = (e) => {
@@ -17,6 +19,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       await authLogin(login);
+      navigate("/");
       // Handle successful login (e.g., redirect)
     } catch (error) {
       // Error is handled by the hook
@@ -73,6 +76,9 @@ export const Login = () => {
             >
               Login
             </button>
+            <span className="block text-sm text-gray-600 mt-4">
+              Don{"'"}t have an account? <Link to="/register">Register</Link>
+            </span>
           </div>
         </form>
       </div>

@@ -2,9 +2,9 @@ import { useState } from "react";
 import { usePage } from '../context/PageContext';
 import { PAGES } from '../constants/pages';
 import { useAuth } from "../hooks/api/useAuth";
-
+import { Link } from "react-router";
 export const Register = () => {
-  
+
   const { register } = useAuth();
   const { setPage } = usePage();
 
@@ -14,7 +14,7 @@ export const Register = () => {
     role: "ADMIN",
     username: "",
   });
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -110,13 +110,14 @@ export const Register = () => {
             >
               Register
             </button>
-            <div className="mt-4 text-center">
-              <span 
-                className="text-sm text-gray-500 cursor-pointer" 
-                onClick={() => setPage(PAGES.LOGIN)}
+            <div className="mt-4 text-center text-sm text-gray-600">
+              Already have an account?
+              <Link
+                className="text-sm text-gray-500 cursor-pointer"
+                to="/"
               >
-                Already have an account? Login
-              </span>
+                Login
+              </Link>
             </div>
           </div>
         </form>
