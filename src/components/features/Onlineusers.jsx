@@ -20,11 +20,14 @@ export const OnlineUsers = () => {
   console.log("addgroup", addGroup);
   
   const handleCheckboxChange = (userId) => {
+
     setAddGroup((prev) => ({...prev, [userId]:!prev[userId]}) );
   };
+
   const handleGroup = () => {
+    const groupName = prompt("please enter name of gruop")
     createChat(chatId)
-  createGroup(addGroup);
+  createGroup(addGroup, groupName);
 };
   useEffect(() => {
     console.log("Fetching online users...");

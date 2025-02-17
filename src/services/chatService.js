@@ -69,12 +69,12 @@ export const chatService = {
       throw new Error(error.message || "Failed to delete message");
     }
   },
-  async createGroup(recevierIds) {
+  async createGroup( groupName,recevierIds) {
     try {
       const response = await apiClient.request(ENDPOINTS.GROUP.CREATE_GROUP, {
         method: "POST",
 
-        body: JSON.stringify({ name: "My first group", recevierIds }),
+        body: JSON.stringify({ name: groupName, recevierIds }),
       });
         return response
     } catch (error) {
