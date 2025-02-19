@@ -1,37 +1,33 @@
-import { useState } from 'react';
+import { useState } from "react";
 // import { useAuth } from '../../hooks/api/useAuth';
-import { Button } from '../common/Button.component.jsx';
-import { useAuth } from '../../api/useAuth.js';
-import { usePage } from '../../context/PageContext.jsx';
-import { PAGES } from '../../constants/pages.js';
+import { Button } from "../common/Button.component.jsx";
+import { useAuth } from "../../api/useAuth.js";
+import { usePage } from "../../context/PageContext.jsx";
+import { PAGES } from "../../constants/pages.js";
 
 export const Login = () => {
   const { login, loading, error } = useAuth();
-  const { setCurrentPage } = usePage()
+  const { setCurrentPage } = usePage();
   const [credentials, setCredentials] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("hello");
-    
+
     try {
-      // console.log("rupi");
-      
       await login(credentials);
-      // console.log("bye");
-      
-      setCurrentPage(PAGES.ONLINEUSERS)
+
+      setCurrentPage(PAGES.MAIN);
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
     }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCredentials(prev => ({ ...prev, [name]: value }));
+    setCredentials((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -41,11 +37,15 @@ export const Login = () => {
           Login
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-         
           <div className="space-y-2">
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Username
+            </label>
             <input
-            name='username'
+              name="username"
               type="text"
               id="username"
               value={credentials.username}
@@ -55,9 +55,14 @@ export const Login = () => {
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
             <input
-              name='password' 
+              name="password"
               type="password"
               id="password"
               value={credentials.password}
@@ -71,7 +76,11 @@ export const Login = () => {
           </Button>
         </form>
         <div className="mt-4 text-center">
-          {error && <div className="text-red-500 text-sm border border-red-500 rounded-md p-2 bg-red-100">{error.message || 'An error occurred during login'}</div>}
+          {error && (
+            <div className="text-red-500 text-sm border border-red-500 rounded-md p-2 bg-red-100">
+              {error.message || "An error occurred during login"}
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { PAGES } from "../../constants/pages";
 import { Button } from "../common/Button.component";
 import { CheckBox } from "./CheckBox";
 import Tabs from "../common/Tabs";
-const chatId = localStorage.getItem("chatId");
+// const chatId = localStorage.getItem("chatId");
 
 // const recevierId = localStorage.getItem("recevierId");
 export const OnlineUsers = () => {
@@ -23,7 +23,7 @@ export const OnlineUsers = () => {
 
   const handleUserSelection = (userId, isChecked) => {
     console.log("handle");
-    
+
     setSelectedUser((prev) => {
       let updatedList = isChecked
         ? [...prev, userId] // ✅ Add user ID
@@ -44,27 +44,26 @@ export const OnlineUsers = () => {
   //     }
   //     return updateList
   //     // console.log();
-      
+
   //   }
-    
+
   // );
   // };
 
-  const handleGroup =  async() => {
-   if (selectedUser.length === 0) {
-     alert("Please select at least one user!");
-     return;
-   }
+  const handleGroup = async () => {
+    if (selectedUser.length === 0) {
+      alert("Please select at least one user!");
+      return;
+    }
 
-   const groupName = prompt("Please enter the name of the group:");
-   if (!groupName) return;
+    const groupName = prompt("Please enter the name of the group:");
+    if (!groupName) return;
 
-  await createGroup(groupName, selectedUser);
-  //  console.log("Creating group with datauser:", {
-  //    name: groupName,
-  //    participants: selectedUser,
-  //  });
-
+    await createGroup(groupName, selectedUser);
+    //  console.log("Creating group with datauser:", {
+    //    name: groupName,
+    //    participants: selectedUser,
+    //  });
   };
   useEffect(() => {
     console.log("Fetching online users...");
@@ -77,26 +76,6 @@ export const OnlineUsers = () => {
     createChat(userId);
     setCurrentPage(PAGES.CHAT);
   };
-  const tabsData = [
-    {
-      id: "tab1",
-      title: "Tab 1",
-      content:
-        "This is the content for Tab 1. You can put any information here.",
-    },
-    {
-      id: "tab2",
-      title: "Tab 2",
-      content:
-        "Welcome to Tab 2! This area can contain text, images, or other components.",
-    },
-    {
-      id: "tab3",
-      title: "Tab 3",
-      content:
-        "Tab 3 is here. You can customize this content as needed for your project.",
-    },
-  ];
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
@@ -110,7 +89,7 @@ export const OnlineUsers = () => {
         <div>
           <Button onClick={handleGroup}>Create group</Button>
         </div>
-        <Tabs tabsData={tabsData}/>
+        {/* <Tabs tabsData={tabsData}/> */}
         <ul className="divide-y divide-gray-200">
           {onlineUsers?.length > 0 ? (
             onlineUsers.map((user, index) => (

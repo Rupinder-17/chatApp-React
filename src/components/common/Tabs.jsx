@@ -1,13 +1,9 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
- 
-
-
-
-export default function Tabs({tabsData=[]}) {
-  const [activeTab, setActiveTab] = useState(tabsData[0].id)
+export default function Tabs({ tabsData = [] }) {
+  const [activeTab, setActiveTab] = useState(tabsData[0].id);
 
   return (
     <div className="w-full max-w-2xl mx-auto mt-8">
@@ -31,12 +27,14 @@ export default function Tabs({tabsData=[]}) {
       </div>
       <div className="mt-8">
         {tabsData.map((tab) => (
-          <div key={tab.id} className={`${activeTab === tab.id ? "block" : "hidden"}`}>
+          <div
+            key={tab.id}
+            className={`${activeTab === tab.id ? "block" : "hidden"}`}
+          >
             <p>{tab.content}</p>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 }
-
