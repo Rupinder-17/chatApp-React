@@ -4,10 +4,7 @@ import { usePage } from "../../context/PageContext";
 import { PAGES } from "../../constants/pages";
 import { Button } from "../common/Button.component";
 import { CheckBox } from "../CheckBox";
-import Tabs from "../common/Tabs";
-// const chatId = localStorage.getItem("chatId");
 
-// const recevierId = localStorage.getItem("recevierId");
 export const OnlineUsers = () => {
   const {
     onlineUsers,
@@ -26,29 +23,12 @@ export const OnlineUsers = () => {
 
     setSelectedUser((prev) => {
       let updatedList = isChecked
-        ? [...prev, userId] // ✅ Add user ID
-        : prev.filter((id) => id !== userId); // ✅ Remove user ID if unchecked
+        ? [...prev, userId] 
+        : prev.filter((id) => id !== userId); 
 
-      // console.log("Updated selected users:", updatedList);
       return updatedList;
     });
   };
-
-  // const handleUserSelection = (userId, isChecked) => {
-  //   setSelectedUser((prev) => {
-  //     let updateList = isChecked
-  //     if (isChecked) {
-  //       return [...prev, userId];
-  //     } else {
-  //       return prev.filter((id) => id !== userId);
-  //     }
-  //     return updateList
-  //     // console.log();
-
-  //   }
-
-  // );
-  // };
 
   const handleGroup = async () => {
     if (selectedUser.length === 0) {
@@ -60,10 +40,6 @@ export const OnlineUsers = () => {
     if (!groupName) return;
 
     await createGroup(groupName, selectedUser);
-    //  console.log("Creating group with datauser:", {
-    //    name: groupName,
-    //    participants: selectedUser,
-    //  });
   };
   useEffect(() => {
     console.log("Fetching online users...");
