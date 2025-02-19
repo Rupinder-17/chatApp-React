@@ -11,7 +11,7 @@ export const useChat = () => {
     loading: false,
     error: null,
   });
-  console.log("chatsccc", chatState);
+  // console.log("chatsccc", chatState);
 
   const updateState = (updates) => {
     setChatState((prev) => ({ ...prev, ...updates }));
@@ -21,7 +21,7 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const users = await chatService.getOnlineUsers();
-      console.log("usrs", users);
+      // console.log("usrs", users);
       updateState({ onlineUsers: users, error: null });
     } catch (err) {
       updateState({ error: err.message });
@@ -33,13 +33,13 @@ export const useChat = () => {
   // Create a new chat
   const createChat = async (userId) => {
 
-    console.log("myid", userId);
+    // console.log("myid", userId);
 
     updateState({ loading: true });
 
     try {
       const newChat = await chatService.createChat(userId);
-      console.log("newChat", newChat._id);
+      // console.log("newChat", newChat._id);
       localStorage.setItem("chatId", newChat._id);
       updateState({
         chats: [...chatState.chats, newChat],
@@ -74,7 +74,7 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const newMessage = await chatService.sendMessage(chatId, content);
-      console.log("newmess", newMessage);
+      // console.log("newmess", newMessage);
 
       updateState({
         messages: [...chatState.messages, newMessage],
@@ -103,13 +103,19 @@ export const useChat = () => {
       updateState({ loading: false });
     }
   };
-  const createGroup = async (recevierId)=>{
+  const createGroup = async ( groupName, recevierId)=>{
+    recevierId;
     updateState({loading: true});
     try{
-       const  groupuser = await chatService.createGroup(recevierId)
+      // console.log("hello api group" ,);
+      
+       const  groupuser = await chatService.createGroup(groupName, recevierId)
+       
+      //  console.log("helloapi 2");
+       
        console.log("groupusers",groupuser);
        
-      updateState({group:[...chatState.group,groupuser ]})
+      updateState({group:[...chatState.group , groupuser ]})
     }
     catch(error){
       updateState({error:error.message});

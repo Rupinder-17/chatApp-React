@@ -32,7 +32,7 @@ export const authService = {
         method: 'POST',
         body: JSON.stringify(userData)
       });
-      console.log("response", response);
+      // console.log("response", response);
       
       return response.data;
     } catch (error) {

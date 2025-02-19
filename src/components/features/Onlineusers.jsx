@@ -3,7 +3,9 @@ import { useChat } from "../../api/useChat";
 import { usePage } from "../../context/PageContext";
 import { PAGES } from "../../constants/pages";
 import { Button } from "../common/Button.component";
- const chatId = localStorage.getItem("chatId");
+import { CheckBox } from "./CheckBox";
+import Tabs from "../common/Tabs";
+const chatId = localStorage.getItem("chatId");
 
 // const recevierId = localStorage.getItem("recevierId");
 export const OnlineUsers = () => {
@@ -16,19 +18,54 @@ export const OnlineUsers = () => {
     createGroup,
   } = useChat();
   const { setCurrentPage } = usePage();
-  const [addGroup, setAddGroup] = useState([]);
-  console.log("addgroup", addGroup);
-  
-  const handleCheckboxChange = (userId) => {
+  const [selectedUser, setSelectedUser] = useState([]);
+  console.log("userSeleted", selectedUser);
 
-    setAddGroup((prev) => ({...prev, [userId]:!prev[userId]}) );
+  const handleUserSelection = (userId, isChecked) => {
+    console.log("handle");
+    
+    setSelectedUser((prev) => {
+      let updatedList = isChecked
+        ? [...prev, userId] // ✅ Add user ID
+        : prev.filter((id) => id !== userId); // ✅ Remove user ID if unchecked
+
+      // console.log("Updated selected users:", updatedList);
+      return updatedList;
+    });
   };
 
-  const handleGroup = () => {
-    const groupName = prompt("please enter name of gruop")
-    createChat(chatId)
-  createGroup(addGroup, groupName);
-};
+  // const handleUserSelection = (userId, isChecked) => {
+  //   setSelectedUser((prev) => {
+  //     let updateList = isChecked
+  //     if (isChecked) {
+  //       return [...prev, userId];
+  //     } else {
+  //       return prev.filter((id) => id !== userId);
+  //     }
+  //     return updateList
+  //     // console.log();
+      
+  //   }
+    
+  // );
+  // };
+
+  const handleGroup =  async() => {
+   if (selectedUser.length === 0) {
+     alert("Please select at least one user!");
+     return;
+   }
+
+   const groupName = prompt("Please enter the name of the group:");
+   if (!groupName) return;
+
+  await createGroup(groupName, selectedUser);
+  //  console.log("Creating group with datauser:", {
+  //    name: groupName,
+  //    participants: selectedUser,
+  //  });
+
+  };
   useEffect(() => {
     console.log("Fetching online users...");
     fetchOnlineUsers();
@@ -40,6 +77,26 @@ export const OnlineUsers = () => {
     createChat(userId);
     setCurrentPage(PAGES.CHAT);
   };
+  const tabsData = [
+    {
+      id: "tab1",
+      title: "Tab 1",
+      content:
+        "This is the content for Tab 1. You can put any information here.",
+    },
+    {
+      id: "tab2",
+      title: "Tab 2",
+      content:
+        "Welcome to Tab 2! This area can contain text, images, or other components.",
+    },
+    {
+      id: "tab3",
+      title: "Tab 3",
+      content:
+        "Tab 3 is here. You can customize this content as needed for your project.",
+    },
+  ];
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
@@ -51,11 +108,9 @@ export const OnlineUsers = () => {
         {loading && <p className="text-center text-gray-500">Loading...</p>}
         {error && <p className="text-red-500 text-center">Error: {error}</p>}
         <div>
-          <Button className={addGroup  ? "visible" : "hidden"}
-          onClick={handleGroup} >
-            Create group
-          </Button>
+          <Button onClick={handleGroup}>Create group</Button>
         </div>
+        <Tabs tabsData={tabsData}/>
         <ul className="divide-y divide-gray-200">
           {onlineUsers?.length > 0 ? (
             onlineUsers.map((user, index) => (
@@ -63,15 +118,8 @@ export const OnlineUsers = () => {
                 key={index}
                 className="flex items-center justify-between p-3 hover:bg-gray-100 transition duration-300 rounded-lg"
               >
+                <CheckBox onSelect={handleUserSelection} userId={user._id} />
                 <div className="flex items-center space-x-3">
-                  <div>
-                    <input
-                      type="checkbox"
-                      checked={!addGroup[user._id]}
-                      onChange={()=>handleCheckboxChange(user._id)}
-                      // className={addGroup ? "visible" : "hidden"}
-                    />
-                  </div>
                   <div className="w-10 h-10 bg-green-400 text-white rounded-full flex items-center justify-center font-bold">
                     {user.username.charAt(0).toUpperCase()}
                   </div>
@@ -82,9 +130,6 @@ export const OnlineUsers = () => {
                     {user.username}
                   </span>
                 </div>
-                {/* <span className="text-green-500 text-sm font-semibold">
-                  Online
-                </span> */}
               </li>
             ))
           ) : (

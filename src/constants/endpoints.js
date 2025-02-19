@@ -17,7 +17,7 @@ export const ENDPOINTS = {
       `/chat-app/messages/${chatId}/${messageId}`,
   },
   USERS: {
-    GET_ONLINE_USERS: "/chat-app/chats/users",
+    GET_ONLINE_USERS: "/chat-app/chats",
   },
   GROUP: {
     CREATE_GROUP: "/chat-app/chats/group",
