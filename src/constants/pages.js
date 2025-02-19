@@ -5,5 +5,6 @@ export const PAGES = {
   USERlIST: "userlist",
   ONLINEUSERS: 'onlineusers',
   CHAT: 'onetoonechat',
-  MESSAGES: 'messages'
+  MESSAGES: 'messages',
+  GROUP: "groups"
 }; 

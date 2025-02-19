@@ -3,11 +3,14 @@ import { useEffect } from "react";
 import { useChat } from "../../api/useChat";
 
 export const UserList = () => {
-  const { loading, error, chatList, getUserChatList } = useChat();
+  const { loading, error, chatList, group, getUserChatList, createGroup } = useChat();
   console.log("chatlist",chatList);
+  console.log("gr" , group);
+  
 
   useEffect(() => {
     getUserChatList();
+    createGroup()
   }, []);
   return (
     <div>

@@ -16,18 +16,11 @@ export const OnlineUsers = () => {
   } = useChat();
   const { setCurrentPage } = usePage();
   const [selectedUser, setSelectedUser] = useState([]);
-  console.log("userSeleted", selectedUser);
 
   const handleUserSelection = (userId, isChecked) => {
-    console.log("handle");
-
-    setSelectedUser((prev) => {
-      let updatedList = isChecked
-        ? [...prev, userId] 
-        : prev.filter((id) => id !== userId); 
-
-      return updatedList;
-    });
+    setSelectedUser((prev) =>
+      isChecked ? [...prev, userId] : prev.filter((id) => id !== userId)
+    );
   };
 
   const handleGroup = async () => {
@@ -41,45 +34,51 @@ export const OnlineUsers = () => {
 
     await createGroup(groupName, selectedUser);
   };
+
+  
   useEffect(() => {
-    console.log("Fetching online users...");
     fetchOnlineUsers();
   }, []);
 
   const handleCreateChat = (userId) => {
-    console.log("recevierId", userId);
     localStorage.setItem("recevierId", userId);
     createChat(userId);
     setCurrentPage(PAGES.CHAT);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg">
-        <h1 className="text-2xl font-bold text-gray-700 text-center mb-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+      <div className="bg-white shadow-xl rounded-2xl p-6 w-full max-w-xl">
+        <h1 className="text-3xl font-extrabold text-indigo-700 text-center mb-6">
           Online Users
         </h1>
 
         {loading && <p className="text-center text-gray-500">Loading...</p>}
         {error && <p className="text-red-500 text-center">Error: {error}</p>}
-        <div>
-          <Button onClick={handleGroup}>Create group</Button>
+
+        <div className="flex justify-center mb-4">
+          <Button
+            onClick={handleGroup}
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow-md transition"
+          >
+            Create Group
+          </Button>
         </div>
-        {/* <Tabs tabsData={tabsData}/> */}
-        <ul className="divide-y divide-gray-200">
+
+        <ul className="space-y-4">
           {onlineUsers?.length > 0 ? (
             onlineUsers.map((user, index) => (
               <li
                 key={index}
-                className="flex items-center justify-between p-3 hover:bg-gray-100 transition duration-300 rounded-lg"
+                className="flex items-center justify-between bg-gray-100 hover:bg-gray-200 transition duration-300 p-4 rounded-lg shadow-sm"
               >
-                <CheckBox onSelect={handleUserSelection} userId={user._id} />
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-green-400 text-white rounded-full flex items-center justify-center font-bold">
+                <div className="flex items-center space-x-4">
+                  <CheckBox onSelect={handleUserSelection} userId={user._id} />
+                  <div className="w-12 h-12 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-lg">
                     {user.username.charAt(0).toUpperCase()}
                   </div>
                   <span
-                    className="text-gray-700 font-medium"
+                    className="text-gray-700 font-semibold text-lg cursor-pointer hover:text-indigo-600 transition"
                     onClick={() => handleCreateChat(user._id)}
                   >
                     {user.username}

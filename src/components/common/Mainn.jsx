@@ -13,7 +13,7 @@ const tabsData = [
   },
   {
     id: "tab2",
-    title: "onlineUser",
+    title: "Availble users",
     content: <OnlineUsers/>
   },
   {

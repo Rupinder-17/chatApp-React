@@ -108,15 +108,15 @@ export const useChat = () => {
       updateState({ loading: false });
     }
   };
-  const createGroup = async (groupName, recevierId) => {
-    recevierId;
+  const createGroup = async (groupName, selectedUser) => {
+    // recevierId;
     updateState({ loading: true });
     try {
-      const groupuser = await chatService.createGroup(groupName, recevierId);
+      const groupuser = await chatService.createGroup(groupName, selectedUser);
 
       console.log("groupusers", groupuser);
 
-      updateState({ group: [...chatState.group, groupuser] });
+      updateState({ group: [...chatState.group, groupuser.data] });
     } catch (error) {
       updateState({ error: error.message });
     } finally {
