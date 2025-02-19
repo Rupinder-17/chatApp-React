@@ -3,7 +3,7 @@ import { useChat } from "../../api/useChat";
 import { usePage } from "../../context/PageContext";
 import { PAGES } from "../../constants/pages";
 import { Button } from "../common/Button.component";
-import { CheckBox } from "./CheckBox";
+import { CheckBox } from "../CheckBox";
 import Tabs from "../common/Tabs";
 // const chatId = localStorage.getItem("chatId");
 

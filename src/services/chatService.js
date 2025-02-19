@@ -2,12 +2,24 @@ import { apiClient } from "../api/apiClient";
 import { ENDPOINTS } from "../constants/endpoints";
 
 export const chatService = {
+
+  async getUserChatList(){
+    try{
+      const response =await apiClient.request(ENDPOINTS.USERS.GET_USERS_LIST)
+      return response
+
+
+    }catch(error){
+      throw new Error(error.message || "Failed to fetch online users");
+      
+    }
+  },
+
   async getOnlineUsers() {
     try {
       const response = await apiClient.request(
-        ENDPOINTS.USERS.GET_ONLINE_USERS
+        ENDPOINTS.USERS.GET_AVAILABLE_USERS
       );
-      // console.log("resp", response.data);
 
       return response.data;
     } catch (error) {

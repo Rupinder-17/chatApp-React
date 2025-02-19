@@ -1,17 +1,18 @@
 // import React from 'react'
 
+import { OneToOneChat } from "../features/OneToOneChat";
+import { OnlineUsers } from "../features/Onlineusers";
 import Tabs from "./Tabs"
 const tabsData = [
   {
     id: "tab1",
     title: "OnlineUser",
-    content: "This is the content for Tab 1. You can put any information here.",
+    content: <OnlineUsers/>
   },
   {
     id: "tab2",
     title: "chat",
-    content:
-      "Welcome to Tab 2! This area can contain text, images, or other components.",
+    content: <OneToOneChat/>
   },
   {
     id: "tab3",

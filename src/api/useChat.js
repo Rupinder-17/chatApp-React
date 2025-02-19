@@ -4,24 +4,34 @@ import { chatService } from "../services/chatService";
 export const useChat = () => {
   const [chatState, setChatState] = useState({
     onlineUsers: {},
+    chatList: [],
     chats: [],
     messages: [],
-    group:[],
+    group: [],
     activeChatId: null,
     loading: false,
     error: null,
   });
-  // console.log("chatsccc", chatState);
 
   const updateState = (updates) => {
     setChatState((prev) => ({ ...prev, ...updates }));
+  };
+  const getUserChatList = async () => {
+    updateState({ loading: true });
+    try {
+      const userChatList = await chatService.getUserChatList();
+      updateState({ chatList: userChatList, error: null });
+    } catch (error) {
+      updateState({ error: error.message });
+    } finally {
+      updateState({ loading: false });
+    }
   };
 
   const fetchOnlineUsers = async () => {
     updateState({ loading: true });
     try {
       const users = await chatService.getOnlineUsers();
-      // console.log("usrs", users);
       updateState({ onlineUsers: users, error: null });
     } catch (err) {
       updateState({ error: err.message });
@@ -32,14 +42,10 @@ export const useChat = () => {
 
   // Create a new chat
   const createChat = async (userId) => {
-
-    // console.log("myid", userId);
-
     updateState({ loading: true });
 
     try {
       const newChat = await chatService.createChat(userId);
-      // console.log("newChat", newChat._id);
       localStorage.setItem("chatId", newChat._id);
       updateState({
         chats: [...chatState.chats, newChat],
@@ -74,7 +80,6 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const newMessage = await chatService.sendMessage(chatId, content);
-      // console.log("newmess", newMessage);
 
       updateState({
         messages: [...chatState.messages, newMessage],
@@ -88,7 +93,7 @@ export const useChat = () => {
   };
 
   // Delete a message
- 
+
   const deleteMessage = async (chatId, messageId) => {
     updateState({ loading: true });
     try {
@@ -103,32 +108,25 @@ export const useChat = () => {
       updateState({ loading: false });
     }
   };
-  const createGroup = async ( groupName, recevierId)=>{
+  const createGroup = async (groupName, recevierId) => {
     recevierId;
-    updateState({loading: true});
-    try{
-      // console.log("hello api group" ,);
-      
-       const  groupuser = await chatService.createGroup(groupName, recevierId)
-       
-      //  console.log("helloapi 2");
-       
-       console.log("groupusers",groupuser);
-       
-      updateState({group:[...chatState.group , groupuser ]})
-    }
-    catch(error){
-      updateState({error:error.message});
-    }
-    finally{
-      updateState({loading:false})
-    }
+    updateState({ loading: true });
+    try {
+      const groupuser = await chatService.createGroup(groupName, recevierId);
 
-  }
+      console.log("groupusers", groupuser);
 
-  
+      updateState({ group: [...chatState.group, groupuser] });
+    } catch (error) {
+      updateState({ error: error.message });
+    } finally {
+      updateState({ loading: false });
+    }
+  };
+
   return {
     ...chatState,
+    getUserChatList,
     fetchOnlineUsers,
     createChat,
     fetchMessages,
