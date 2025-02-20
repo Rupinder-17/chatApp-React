@@ -12,8 +12,6 @@ export const useChat = () => {
     loading: false,
     error: null,
   });
-  console.log("mmmggg",chatState.group );
-  
 
   const updateState = (updates) => {
     setChatState((prev) => ({ ...prev, ...updates }));
@@ -42,7 +40,6 @@ export const useChat = () => {
     }
   };
 
-  // Create a new chat
   const createChat = async (userId) => {
     updateState({ loading: true });
 
@@ -77,7 +74,6 @@ export const useChat = () => {
     }
   };
 
-  // Send a message
   const sendMessage = async (chatId, content) => {
     updateState({ loading: true });
     try {
@@ -94,7 +90,6 @@ export const useChat = () => {
     }
   };
 
-  // Delete a message
 
   const deleteMessage = async (chatId, messageId) => {
     updateState({ loading: true });
@@ -111,13 +106,10 @@ export const useChat = () => {
     }
   };
   const createGroup = async (groupName, selectedUser) => {
-    // recevierId;
     updateState({ loading: true });
     try {
       const groupuser = await chatService.createGroup(groupName, selectedUser);
-      localStorage.setItem("groupName", JSON.stringify(groupuser))
-
-      console.log("groupusers", groupuser);
+      localStorage.setItem("groupName", JSON.stringify(groupuser));
 
       updateState({ group: [...chatState.group, groupuser] });
     } catch (error) {

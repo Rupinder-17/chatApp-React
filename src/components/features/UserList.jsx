@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useChat } from "../../api/useChat";
 import { PAGES } from "../../constants/pages";
+import { usePage } from "../../context/PageContext";
 
 export const UserList = () => {
   const {
@@ -9,18 +10,18 @@ export const UserList = () => {
     chatList,
     getUserChatList,
     createChat,
-    setCurrentPage,
   } = useChat();
+  const {setCurrentPage} = usePage()
 
   useEffect(() => {
     setTimeout(() => {
       getUserChatList();
     }, 1000);
   }, []);
-
-  const handleChatWithActiveUser = (userId) => {
-    console.log("my user id", userId);
-    createChat(userId);
+const recevierId = localStorage.getItem("recevierId");
+  const handleChatWithActiveUser = () => {
+    console.log("my user id", recevierId);
+    createChat(recevierId);
     setCurrentPage(PAGES.CHAT);
   };
 
@@ -49,7 +50,7 @@ export const UserList = () => {
                   </div>
                   <span
                     className="text-gray-700 font-semibold text-lg"
-                    onClick={() => handleChatWithActiveUser(item._id)}
+                    onClick={() => handleChatWithActiveUser()}
                   >
                     {item.isGroupChat
                       ? item.name
