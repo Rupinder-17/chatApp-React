@@ -9,8 +9,8 @@ export const Login = () => {
   const { login, loading, error } = useAuth();
   const { setCurrentPage } = usePage();
   const [credentials, setCredentials] = useState({
-    username: "",
     password: "",
+    username: "",
   });
 
   const handleSubmit = async (e) => {

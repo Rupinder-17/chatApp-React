@@ -3,13 +3,15 @@ import { usePage } from "../context/PageContext";
 import { Login } from "../components/features/Login.component";
 import { useAuth } from "../api/useAuth";
 import { RegisterCom } from "../components/features/RegisterCom";
-import { OnlineUsers,} from "../components/features/Onlineusers";
 import { OneToOneChat } from "../components/features/OneToOneChat";
 import { Mainn } from "../components/common/Mainn";
+import { useEffect } from "react";
+// import { RegisterCom } from "../components/features/RegisterCom";
 
 export const Index = () => {
   const { user, logout } = useAuth();
-  const { currentPage } = usePage();
+  const { currentPage, setCurrentPage } = usePage();
+  console.log("userttt", user);
 
   const confirmLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
@@ -19,6 +21,25 @@ export const Index = () => {
     }
   };
 
+  useEffect(() => {
+    if (user) {
+      setCurrentPage(PAGES.MAIN);
+    }
+  }, [user]);
+  // const isUserLogin = localStorage.getItem("accessToken");
+  // if (isUserLogin) {
+  //   if (currentPage === PAGES.MAIN) {
+  //     return <Mainn />;
+  //   } else if (currentPage === PAGES.CHAT) {
+  //     return <OneToOneChat />;
+  //   }
+  // } else {
+  //   if (currentPage === PAGES.LOGIN) {
+  //     return <Login />;
+  //   } else if (currentPage === PAGES.REGISTER) {
+  //     return <RegisterCom />;
+  //   }
+  // }
   return (
     <div className="relative">
       {user && (
@@ -33,11 +54,9 @@ export const Index = () => {
       )}
 
       {currentPage === PAGES.REGISTER && <RegisterCom />}
-
       {currentPage === PAGES.LOGIN && <Login />}
-      {currentPage === PAGES.MAIN&& <Mainn/>}
-      {currentPage === PAGES.ONLINEUSERS && <OnlineUsers />}
-      {currentPage === PAGES.CHAT && <OneToOneChat/>}
+      {currentPage === PAGES.MAIN && <Mainn />}
+      {currentPage === PAGES.CHAT && <OneToOneChat />}
     </div>
   );
 };

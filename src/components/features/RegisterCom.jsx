@@ -13,28 +13,16 @@ export const RegisterCom = () => {
     role: "ADMIN",
     username: "",
   });
-  // console.log("userdata", userData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // console.log("submittion");
-
       const res = await register(userData);
       console.log("res", res);
       setCurrentPage(PAGES.LOGIN);
-
-      // if (res && !error) {
-      //   console.log("navigation");
-
-      //   setCurrentPage(PAGES.LOGIN);
-      // }
-      // return true;
     } catch (error) {
       console.log("error", error);
-      // return false;
     }
-    // window.location.reload();
   };
 
   const handleChange = (e) => {

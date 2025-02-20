@@ -1,17 +1,28 @@
 import { useEffect } from "react";
 import { useChat } from "../../api/useChat";
+import { PAGES } from "../../constants/pages";
 
 export const UserList = () => {
-  const { loading, error, chatList,  getUserChatList } =
-    useChat();
+  const {
+    loading,
+    error,
+    chatList,
+    getUserChatList,
+    createChat,
+    setCurrentPage,
+  } = useChat();
 
   useEffect(() => {
-    setTimeout(()=>{
+    setTimeout(() => {
       getUserChatList();
-
-    },1000)
-    // createGroup();
+    }, 1000);
   }, []);
+
+  const handleChatWithActiveUser = (userId) => {
+    console.log("my user id", userId);
+    createChat(userId);
+    setCurrentPage(PAGES.CHAT);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
@@ -32,10 +43,17 @@ export const UserList = () => {
               >
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                    {item.name.charAt(0).toUpperCase()}
+                    {item.isGroupChat
+                      ? item.name
+                      : item.participants[1].username.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-gray-700 font-semibold text-lg">
-                    { item.isGroupChat ? item.name : item.participants[1].username }
+                  <span
+                    className="text-gray-700 font-semibold text-lg"
+                    onClick={() => handleChatWithActiveUser(item._id)}
+                  >
+                    {item.isGroupChat
+                      ? item.name
+                      : item.participants[1].username}
                   </span>
                 </div>
               </li>
