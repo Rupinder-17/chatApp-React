@@ -109,6 +109,7 @@ export const useChat = () => {
     try {
       const groupuser = await chatService.createGroup(groupName, selectedUser);
       localStorage.setItem("groupName", JSON.stringify(groupuser));
+      localStorage.setItem("groupId", groupuser.data._id)
 
       updateState({ group: [...chatState.group, groupuser] });
     } catch (error) {
@@ -122,6 +123,7 @@ export const useChat = () => {
     updateState({loading:true})
     try{
       const groupChat = await chatService.createGroupChat(chatId)
+      localStorage.setItem("groupchat", JSON.stringify(groupChat))
       console.log("groupchate", groupChat);
       
       updateState({groupChat: [...chatState.groupChat, groupChat ]})

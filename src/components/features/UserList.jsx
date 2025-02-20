@@ -21,12 +21,12 @@ export const UserList = () => {
 
     },1000);
   }, []);
-
+const chatId = localStorage.getItem("groupId");
 const recevierId = localStorage.getItem("recevierId");
   const handleChatWithActiveUser = () => {
     console.log("my user id", recevierId);
     createChat(recevierId);
-    createGroupChat()
+    createGroupChat(chatId)
     setCurrentPage(PAGES.CHAT);
   };
 
