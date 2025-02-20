@@ -8,6 +8,7 @@ export const useChat = () => {
     chats: [],
     messages: [],
     group: [],
+    groupChat: [],
     activeChatId: null,
     loading: false,
     error: null,
@@ -78,7 +79,6 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const newMessage = await chatService.sendMessage(chatId, content);
-
       updateState({
         messages: [...chatState.messages, newMessage],
         error: null,
@@ -89,7 +89,6 @@ export const useChat = () => {
       updateState({ loading: false });
     }
   };
-
 
   const deleteMessage = async (chatId, messageId) => {
     updateState({ loading: true });
@@ -119,6 +118,21 @@ export const useChat = () => {
     }
   };
 
+  const createGroupChat = async (chatId)=>{
+    updateState({loading:true})
+    try{
+      const groupChat = await chatService.createGroupChat(chatId)
+      console.log("groupchate", groupChat);
+      
+      updateState({groupChat: [...chatState.groupChat, groupChat ]})
+    }catch(e){
+      updateState({error: e.message});
+    }
+    finally{
+      updateState({loading:false})
+    }
+  }
+
   return {
     ...chatState,
     getUserChatList,
@@ -128,5 +142,6 @@ export const useChat = () => {
     sendMessage,
     deleteMessage,
     createGroup,
+    createGroupChat,
   };
 };

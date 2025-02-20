@@ -2,16 +2,12 @@ import { apiClient } from "../api/apiClient";
 import { ENDPOINTS } from "../constants/endpoints";
 
 export const chatService = {
-
-  async getUserChatList(){
-    try{
-      const response =await apiClient.request(ENDPOINTS.USERS.GET_USERS_LIST)
-      return response
-
-
-    }catch(error){
+  async getUserChatList() {
+    try {
+      const response = await apiClient.request(ENDPOINTS.USERS.GET_USERS_LIST);
+      return response;
+    } catch (error) {
       throw new Error(error.message || "Failed to fetch online users");
-      
     }
   },
 
@@ -92,6 +88,16 @@ export const chatService = {
 
         body: JSON.stringify({ name: groupName, participants: selectedUser }),
       });
+      return response;
+    } catch (error) {
+      throw new Error(error.message || "Failed to delete message");
+    }
+  },
+  async createGroupChat(chatId) {
+    try {
+      const response = await apiClient.request(
+        ENDPOINTS.GROUP.CREATE_GROUP_CHAT(chatId)
+      );
       return response;
     } catch (error) {
       throw new Error(error.message || "Failed to delete message");

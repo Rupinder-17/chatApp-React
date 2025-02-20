@@ -8,20 +8,25 @@ export const UserList = () => {
     loading,
     error,
     chatList,
+    // group,
     getUserChatList,
     createChat,
+    createGroupChat,
   } = useChat();
   const {setCurrentPage} = usePage()
 
   useEffect(() => {
     setTimeout(() => {
       getUserChatList();
-    }, 1000);
+
+    },1000);
   }, []);
+
 const recevierId = localStorage.getItem("recevierId");
   const handleChatWithActiveUser = () => {
     console.log("my user id", recevierId);
     createChat(recevierId);
+    createGroupChat()
     setCurrentPage(PAGES.CHAT);
   };
 
@@ -50,7 +55,7 @@ const recevierId = localStorage.getItem("recevierId");
                   </div>
                   <span
                     className="text-gray-700 font-semibold text-lg"
-                    onClick={() => handleChatWithActiveUser()}
+                    onClick={ handleChatWithActiveUser}
                   >
                     {item.isGroupChat
                       ? item.name
