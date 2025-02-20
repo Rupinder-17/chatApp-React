@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { Group } from "../features/Group";
+// import { Group } from "../features/Group";
 // import { OneToOneChat } from "../features/OneToOneChat";
 import { OnlineUsers } from "../features/Onlineusers";
 import { UserList } from "../features/UserList";
@@ -16,11 +16,11 @@ const tabsData = [
     title: "Availble users",
     content: <OnlineUsers/>
   },
-  {
-    id: "tab3",
-    title: "Group",
-    content:<Group/>
-  },
+  // {
+  //   id: "tab3",
+  //   title: "Group",
+  //   content:<Group/>
+  // },
 ];
 
 export const Mainn = () => {

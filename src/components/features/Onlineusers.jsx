@@ -35,7 +35,7 @@ export const OnlineUsers = () => {
     await createGroup(groupName, selectedUser);
   };
 
-  
+
   useEffect(() => {
     fetchOnlineUsers();
   }, []);
@@ -73,7 +73,7 @@ export const OnlineUsers = () => {
                 className="flex items-center justify-between bg-gray-100 hover:bg-gray-200 transition duration-300 p-4 rounded-lg shadow-sm"
               >
                 <div className="flex items-center space-x-4">
-                  <CheckBox onSelect={handleUserSelection} userId={user._id} />
+                  <CheckBox onSelect={handleUserSelection} userId={user._id}/>
                   <div className="w-12 h-12 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-lg">
                     {user.username.charAt(0).toUpperCase()}
                   </div>

@@ -12,6 +12,8 @@ export const useChat = () => {
     loading: false,
     error: null,
   });
+  console.log("mmmggg",chatState.group );
+  
 
   const updateState = (updates) => {
     setChatState((prev) => ({ ...prev, ...updates }));
@@ -113,10 +115,11 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const groupuser = await chatService.createGroup(groupName, selectedUser);
+      localStorage.setItem("groupName", JSON.stringify(groupuser))
 
       console.log("groupusers", groupuser);
 
-      updateState({ group: [...chatState.group, groupuser.data] });
+      updateState({ group: [...chatState.group, groupuser] });
     } catch (error) {
       updateState({ error: error.message });
     } finally {

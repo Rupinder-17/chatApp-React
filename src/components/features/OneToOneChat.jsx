@@ -8,6 +8,7 @@ export const OneToOneChat = () => {
 
   const [inputValue, setInputValue] = useState("");
   const chatId = localStorage.getItem("chatId");
+  const recevierId = localStorage.getItem("recevierId");
 
   const handleSendChat = async () => {
     await sendMessage(chatId, inputValue);
@@ -33,10 +34,10 @@ export const OneToOneChat = () => {
           messages?.map((msg, index) => (
             <div
               key={index}
-              className={`p-2 my-2 rounded-lg ${
-                msg.sender._Id === msg.id
-                  ? "bg-gray-300 text-black text-right "
-                  : "bg-blue-500 text-white text-left"
+              className={`p-2 my-2 w-[80%] rounded-lg ${
+                msg.sender._id !== recevierId
+                  ? "bg-gray-300 text-black text-right flex-start "
+                  : "bg-blue-500 text-white flex-end"
               }`}
             >
               <ul>
