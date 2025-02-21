@@ -108,8 +108,8 @@ export const useChat = () => {
     updateState({ loading: true });
     try {
       const groupuser = await chatService.createGroup(groupName, selectedUser);
-      localStorage.setItem("groupName", JSON.stringify(groupuser));
-      localStorage.setItem("groupId", groupuser.data._id)
+      // localStorage.setItem("groupName", JSON.stringify(groupuser));
+      // localStorage.setItem("groupId", groupuser.data._id)
 
       updateState({ group: [...chatState.group, groupuser] });
     } catch (error) {
@@ -119,21 +119,20 @@ export const useChat = () => {
     }
   };
 
-  const createGroupChat = async (chatId)=>{
-    updateState({loading:true})
-    try{
-      const groupChat = await chatService.createGroupChat(chatId)
-      localStorage.setItem("groupchat", JSON.stringify(groupChat))
-      console.log("groupchate", groupChat);
-      
-      updateState({groupChat: [...chatState.groupChat, groupChat ]})
-    }catch(e){
-      updateState({error: e.message});
+  const createGroupChat = async (chatId) => {
+    updateState({ loading: true });
+    try {
+      const groupChat = await chatService.createGroupChat(chatId);
+      localStorage.setItem("chatId", groupChat.data._id);
+      console.log("groupchat", groupChat);
+
+      updateState({ groupChat: [...chatState.groupChat, groupChat] });
+    } catch (e) {
+      updateState({ error: e.message });
+    } finally {
+      updateState({ loading: false });
     }
-    finally{
-      updateState({loading:false})
-    }
-  }
+  };
 
   return {
     ...chatState,

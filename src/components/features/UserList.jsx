@@ -13,20 +13,24 @@ export const UserList = () => {
     createChat,
     createGroupChat,
   } = useChat();
-  const {setCurrentPage} = usePage()
+  const { setCurrentPage } = usePage();
 
   useEffect(() => {
-    setTimeout(() => {
-      getUserChatList();
-
-    },1000);
+    getUserChatList();
   }, []);
-const chatId = localStorage.getItem("groupId");
-const recevierId = localStorage.getItem("recevierId");
-  const handleChatWithActiveUser = () => {
+  const chatId = localStorage.getItem("groupId");
+  console.log("groupid", chatId);
+
+  // const recevierId = localStorage.getItem("recevierId");
+
+  const handleChatWithActiveUser = (isGroupChat, recevierId) => {
     console.log("my user id", recevierId);
-    createChat(recevierId);
-    createGroupChat(chatId)
+    if (isGroupChat) {
+      
+      createGroupChat(recevierId);
+    } else {
+      createChat(recevierId);
+    }
     setCurrentPage(PAGES.CHAT);
   };
 
@@ -55,17 +59,24 @@ const recevierId = localStorage.getItem("recevierId");
                   </div>
                   <span
                     className="text-gray-700 font-semibold text-lg"
-                    onClick={ handleChatWithActiveUser}
+                    onClick={() => {
+                      let recevierId = item.isGroupChat
+                        ? item._id
+                        : item.participants[0]._id;
+                      handleChatWithActiveUser(item.isGroupChat, recevierId);
+                    }}
                   >
                     {item.isGroupChat
                       ? item.name
-                      : item.participants[1].username}
+                      : item.participants[0].username}
                   </span>
                 </div>
               </li>
             ))
           ) : (
-            <p className="text-center text-gray-500">No users found.</p>
+            <li>
+              <p className="text-center text-gray-500">No users found.</p>
+            </li>
           )}
         </ul>
       </div>

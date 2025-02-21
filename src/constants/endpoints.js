@@ -22,6 +22,6 @@ export const ENDPOINTS = {
   },
   GROUP: {
     CREATE_GROUP: "/chat-app/chats/group",
-    CREATE_GROUP_CHAT: (chatId)=>`/chat-app/chats/group/${chatId}"`,
+    CREATE_GROUP_CHAT: (chatId)=>`/chat-app/chats/group/${chatId}`,
   },
 }; 
