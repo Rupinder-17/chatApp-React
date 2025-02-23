@@ -8,7 +8,6 @@ export const UserList = () => {
     loading,
     error,
     chatList,
-    // group,
     getUserChatList,
     createChat,
     createGroupChat,
@@ -35,7 +34,7 @@ export const UserList = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+    <div className="  bg-gradient-to-br flex justify-center to-indigo-100 p-6">
       <div className="bg-white shadow-xl rounded-2xl p-6 w-full max-w-lg">
         <h2 className="text-3xl font-extrabold text-indigo-700 text-center mb-6">
           User Chat List

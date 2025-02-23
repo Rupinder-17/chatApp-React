@@ -101,6 +101,10 @@ export const RegisterCom = () => {
           >
             Register
           </Button>
+          <a href="#" onClick={(e)=>{
+            e.preventDefault();
+            setCurrentPage(PAGES.LOGIN)
+          }}>Allready Login</a>
         </form>
         {error && (
           <div className="mt-4 text-center text-red-500 text-sm border border-red-500 rounded-md p-2 bg-red-100">

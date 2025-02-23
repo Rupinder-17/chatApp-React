@@ -47,7 +47,7 @@ export const OnlineUsers = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br  to-indigo-100 p-6">
       <div className="bg-white shadow-xl rounded-2xl p-6 w-full max-w-xl">
         <h1 className="text-3xl font-extrabold text-indigo-700 text-center mb-6">
           Online Users

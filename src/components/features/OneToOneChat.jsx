@@ -11,7 +11,10 @@ export const OneToOneChat = () => {
   const handleSendChat = async () => {
     if (inputValue.trim()) {
       await sendMessage(chatId, inputValue);
-      await fetchMessages(chatId);
+      setInterval(()=>{
+         fetchMessages(chatId);
+
+      },1000)
       setInputValue("");
     }
   };
