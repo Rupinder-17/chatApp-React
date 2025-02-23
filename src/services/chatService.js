@@ -98,6 +98,8 @@ export const chatService = {
       const response = await apiClient.request(
         ENDPOINTS.GROUP.CREATE_GROUP_CHAT(chatId)
       );
+      localStorage.setItem("chatId", response.data._id);
+
       return response;
     } catch (error) {
       throw new Error(error.message || "Failed to delete message");
