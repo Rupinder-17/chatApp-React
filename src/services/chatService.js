@@ -88,6 +88,7 @@ export const chatService = {
 
         body: JSON.stringify({ name: groupName, participants: selectedUser }),
       });
+      
       return response;
     } catch (error) {
       throw new Error(error.message || "Failed to delete message");

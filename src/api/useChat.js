@@ -109,6 +109,7 @@ export const useChat = () => {
     try {
       const groupuser = await chatService.createGroup(groupName, selectedUser);
       updateState({ group: [...chatState.group, groupuser] });
+      window.location.reload()
 
     } catch (error) {
       updateState({ error: error.message });
