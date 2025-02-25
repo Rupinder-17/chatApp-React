@@ -3,6 +3,7 @@ import { useAuth } from "../../api/useAuth";
 import { Button } from "../common/Button.component";
 import { usePage } from "../../context/PageContext";
 import { PAGES } from "../../constants/pages";
+import { Navbar } from "../../constants/Navbar";
 
 export const RegisterCom = () => {
   const { register, loading, error } = useAuth();
@@ -32,6 +33,7 @@ export const RegisterCom = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Navbar/>
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-center text-gray-700 mb-6">
           Register

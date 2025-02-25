@@ -65,7 +65,7 @@ export const OnlineUsers = () => {
           </Button>
         </div>
         <div>
-          <p className="bg-red-300">{onlineUsers.length}</p>
+          <p className="bg-green-300 text-xl text-center rounded-lg py-2 mb-2 ">Number of users:- {onlineUsers.length}</p>
         </div>
 
         <ul className="space-y-4">

@@ -6,6 +6,8 @@ import { RegisterCom } from "../components/features/RegisterCom";
 import { OneToOneChat } from "../components/features/OneToOneChat";
 import { Mainn } from "../components/common/Mainn";
 import { useEffect } from "react";
+import { Route, Routes } from "react-router";
+import { Navbar } from "../constants/Navbar";
 // import { RegisterCom } from "../components/features/RegisterCom";
 
 export const Index = () => {
@@ -39,11 +41,21 @@ export const Index = () => {
           </button>
         </div>
       )}
+      {/* <Navbar/> */}
 
-      {currentPage === PAGES.REGISTER && <RegisterCom />}
+      <Routes>
+        <Route path="/" element={<RegisterCom/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/Main" element={<Mainn/>}/>
+        <Route path="/chat" element={<OneToOneChat/>}/>
+
+      </Routes>
+      
+
+      {/* {currentPage === PAGES.REGISTER && <RegisterCom />}
       {currentPage === PAGES.LOGIN && <Login />}
       {currentPage === PAGES.MAIN && <Mainn />}
-      {currentPage === PAGES.CHAT && <OneToOneChat />}
+      {currentPage === PAGES.CHAT && <OneToOneChat />} */}
     </div>
   );
 };
