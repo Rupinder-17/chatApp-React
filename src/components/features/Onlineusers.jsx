@@ -64,6 +64,9 @@ export const OnlineUsers = () => {
             Create Group
           </Button>
         </div>
+        <div>
+          <p className="bg-red-300">{onlineUsers.length}</p>
+        </div>
 
         <ul className="space-y-4">
           {onlineUsers?.length > 0 ? (

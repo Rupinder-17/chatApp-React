@@ -26,20 +26,7 @@ export const Index = () => {
       setCurrentPage(PAGES.MAIN);
     }
   }, [user]);
-  // const isUserLogin = localStorage.getItem("accessToken");
-  // if (isUserLogin) {
-  //   if (currentPage === PAGES.MAIN) {
-  //     return <Mainn />;
-  //   } else if (currentPage === PAGES.CHAT) {
-  //     return <OneToOneChat />;
-  //   }
-  // } else {
-  //   if (currentPage === PAGES.LOGIN) {
-  //     return <Login />;
-  //   } else if (currentPage === PAGES.REGISTER) {
-  //     return <RegisterCom />;
-  //   }
-  // }
+
   return (
     <div className="relative">
       {user && (
