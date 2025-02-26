@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { useAuth } from "../../api/useAuth";
 import { Button } from "../common/Button.component";
-// import { usePage } from "../../context/PageContext";
-// import { PAGES } from "../../constants/pages";
-// import { Navbar } from "../../constants/Navbar";
+
 import { useNavigate } from "react-router";
 
 export const RegisterCom = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { register, loading, error } = useAuth();
-  // const { setCurrentPage } = usePage();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -22,8 +19,7 @@ export const RegisterCom = () => {
     try {
       const res = await register(userData);
       console.log("res", res);
-      navigate("/login")
-      // setCurrentPage(PAGES.LOGIN);
+      navigate("/login");
     } catch (error) {
       console.log("error", error);
     }
@@ -36,7 +32,6 @@ export const RegisterCom = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      {/* <Navbar/> */}
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-center text-gray-700 mb-6">
           Register
@@ -106,11 +101,15 @@ export const RegisterCom = () => {
           >
             Register
           </Button>
-          <a href="#" onClick={(e)=>{
-            e.preventDefault();
-            navigate("/login")
-            // setCurrentPage(PAGES.LOGIN)
-          }}>Allready Login</a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/login");
+            }}
+          >
+            Allready Login
+          </a>
         </form>
         {error && (
           <div className="mt-4 text-center text-red-500 text-sm border border-red-500 rounded-md p-2 bg-red-100">

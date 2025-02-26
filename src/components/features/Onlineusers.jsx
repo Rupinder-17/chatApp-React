@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useChat } from "../../api/useChat";
-import { usePage } from "../../context/PageContext";
-import { PAGES } from "../../constants/pages";
 import { Button } from "../common/Button.component";
 import { CheckBox } from "../CheckBox";
 import { useNavigate } from "react-router";
@@ -15,7 +13,6 @@ export const OnlineUsers = () => {
     createChat,
     createGroup,
   } = useChat();
-  const { setCurrentPage } = usePage();
   const [selectedUser, setSelectedUser] = useState([]);
   const navigate = useNavigate()
 
@@ -45,7 +42,6 @@ export const OnlineUsers = () => {
   const handleCreateChat = (userId) => {
     localStorage.setItem("recevierId", userId);
     createChat(userId);
-    // setCurrentPage(PAGES.CHAT);
     navigate("/chat")
   };
 

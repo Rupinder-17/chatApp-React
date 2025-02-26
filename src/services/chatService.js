@@ -64,7 +64,6 @@ export const chatService = {
     }
   },
   async deleteMessage(chatId, messageId) {
-    //  const messageId = localStorage.getItem("messageId");
 
     try {
       await apiClient.request(

@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import { useChat } from "../../api/useChat";
-import { PAGES } from "../../constants/pages";
-import { usePage } from "../../context/PageContext";
 import { useAuth } from "../../api/useAuth";
 import { useNavigate } from "react-router";
 
 export const UserList = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     loading,
     error,
@@ -15,9 +13,7 @@ export const UserList = () => {
     createChat,
     createGroupChat,
   } = useChat();
-  // const { setCurrentPage } = usePage();
-  // const {user}= useAut
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   useEffect(() => {
     getUserChatList();
@@ -32,9 +28,7 @@ export const UserList = () => {
     } else {
       createChat(recevierId);
     }
-    navigate("/chat")
-
-    // setCurrentPage(PAGES.CHAT);
+    navigate("/chat");
   };
 
   return (
@@ -50,7 +44,9 @@ export const UserList = () => {
         <ul className="space-y-4">
           {chatList?.data?.length > 0 ? (
             chatList.data.map((item, index) => {
-              let participant = item.participants.find((item)=> item._id !== user._id)
+              let participant = item.participants.find(
+                (item) => item._id !== user._id
+              );
               return (
                 <li
                   key={index}

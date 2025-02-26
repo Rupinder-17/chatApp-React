@@ -2,14 +2,11 @@ import { useState } from "react";
 // import { useAuth } from '../../hooks/api/useAuth';
 import { Button } from "../common/Button.component.jsx";
 import { useAuth } from "../../api/useAuth.js";
-import { usePage } from "../../context/PageContext.jsx";
-import { PAGES } from "../../constants/pages.js";
 import { Link, useNavigate } from "react-router";
 
 export const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { login, loading, error } = useAuth();
-  const { setCurrentPage } = usePage();
   const [credentials, setCredentials] = useState({
     password: "",
     username: "",
@@ -20,10 +17,7 @@ export const Login = () => {
 
     try {
       await login(credentials);
-      navigate("/Main")
-
-
-      // setCurrentPage(PAGES.MAIN);
+      navigate("/Main");
     } catch (error) {
       console.error("Login failed:", error);
     }
