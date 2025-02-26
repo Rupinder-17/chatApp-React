@@ -4,8 +4,10 @@ import { Button } from "../common/Button.component.jsx";
 import { useAuth } from "../../api/useAuth.js";
 import { usePage } from "../../context/PageContext.jsx";
 import { PAGES } from "../../constants/pages.js";
+import { Link, useNavigate } from "react-router";
 
 export const Login = () => {
+  const navigate = useNavigate()
   const { login, loading, error } = useAuth();
   const { setCurrentPage } = usePage();
   const [credentials, setCredentials] = useState({
@@ -18,8 +20,10 @@ export const Login = () => {
 
     try {
       await login(credentials);
+      navigate("/Main")
 
-      setCurrentPage(PAGES.MAIN);
+
+      // setCurrentPage(PAGES.MAIN);
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -74,6 +78,7 @@ export const Login = () => {
           <Button type="submit" loading={loading}>
             Login
           </Button>
+          <Link to="/">Register page</Link>
         </form>
         <div className="mt-4 text-center">
           {error && (

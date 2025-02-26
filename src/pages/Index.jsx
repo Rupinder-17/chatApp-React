@@ -1,5 +1,5 @@
 import { PAGES } from "../constants/pages";
-import { usePage } from "../context/PageContext";
+// import { usePage } from "../context/PageContext";
 import { Login } from "../components/features/Login.component";
 import { useAuth } from "../api/useAuth";
 import { RegisterCom } from "../components/features/RegisterCom";
@@ -7,12 +7,12 @@ import { OneToOneChat } from "../components/features/OneToOneChat";
 import { Mainn } from "../components/common/Mainn";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router";
-import { Navbar } from "../constants/Navbar";
+// import { Navbar } from "../constants/Navbar";
 // import { RegisterCom } from "../components/features/RegisterCom";
 
 export const Index = () => {
   const { user, logout } = useAuth();
-  const { currentPage, setCurrentPage } = usePage();
+  // const { currentPage, setCurrentPage } = usePage();
   console.log("userttt", user);
 
   const confirmLogout = () => {
@@ -48,6 +48,7 @@ export const Index = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/Main" element={<Mainn/>}/>
         <Route path="/chat" element={<OneToOneChat/>}/>
+        <Route path="*" element={<NotFound/>}/>
 
       </Routes>
       
@@ -59,3 +60,8 @@ export const Index = () => {
     </div>
   );
 };
+const NotFound = ()=>{
+  return(
+    <h1>page not found</h1>
+  )
+}
