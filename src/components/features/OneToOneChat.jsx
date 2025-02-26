@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useChat } from "../../api/useChat";
 import { FiSend, FiTrash } from "react-icons/fi";
+import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 export const OneToOneChat = () => {
   const { messages, fetchMessages, sendMessage, deleteMessage } = useChat();
   const [inputValue, setInputValue] = useState("");
   const chatId = localStorage.getItem("chatId");
   const recevierId = localStorage.getItem("recevierId");
+  const navigate = useNavigate()
 
   const handleSendChat = async () => {
     if (inputValue.trim()) {
@@ -26,7 +29,12 @@ export const OneToOneChat = () => {
 
   return (
     <div className="flex flex-col h-screen max-w-2xl mx-auto bg-gray-100 shadow-xl rounded-lg overflow-hidden">
-      <div className="bg-blue-600 text-white text-xl font-bold p-4 shadow-md">
+      <div className="bg-blue-600 text-white text-xl font-bold p-4 shadow-md flex items-center gap-3">
+        <div >
+          <FaArrowLeft  onClick={()=>{
+            navigate("/Main")
+          }} />
+        </div>
         One-to-One Chat
       </div>
 

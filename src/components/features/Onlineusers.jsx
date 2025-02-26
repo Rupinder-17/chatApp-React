@@ -4,6 +4,7 @@ import { usePage } from "../../context/PageContext";
 import { PAGES } from "../../constants/pages";
 import { Button } from "../common/Button.component";
 import { CheckBox } from "../CheckBox";
+import { useNavigate } from "react-router";
 
 export const OnlineUsers = () => {
   const {
@@ -16,6 +17,7 @@ export const OnlineUsers = () => {
   } = useChat();
   const { setCurrentPage } = usePage();
   const [selectedUser, setSelectedUser] = useState([]);
+  const navigate = useNavigate()
 
   const handleUserSelection = (userId, isChecked) => {
     setSelectedUser((prev) =>
@@ -43,7 +45,8 @@ export const OnlineUsers = () => {
   const handleCreateChat = (userId) => {
     localStorage.setItem("recevierId", userId);
     createChat(userId);
-    setCurrentPage(PAGES.CHAT);
+    // setCurrentPage(PAGES.CHAT);
+    navigate("/chat")
   };
 
   return (

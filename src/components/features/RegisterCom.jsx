@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useAuth } from "../../api/useAuth";
 import { Button } from "../common/Button.component";
-import { usePage } from "../../context/PageContext";
-import { PAGES } from "../../constants/pages";
+// import { usePage } from "../../context/PageContext";
+// import { PAGES } from "../../constants/pages";
 // import { Navbar } from "../../constants/Navbar";
 import { useNavigate } from "react-router";
 
 export const RegisterCom = () => {
   const navigate = useNavigate()
   const { register, loading, error } = useAuth();
-  const { setCurrentPage } = usePage();
+  // const { setCurrentPage } = usePage();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -22,7 +22,8 @@ export const RegisterCom = () => {
     try {
       const res = await register(userData);
       console.log("res", res);
-      setCurrentPage(PAGES.LOGIN);
+      navigate("/login")
+      // setCurrentPage(PAGES.LOGIN);
     } catch (error) {
       console.log("error", error);
     }

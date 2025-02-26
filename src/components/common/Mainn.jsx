@@ -12,7 +12,6 @@ const tabsData = [
     title: "Availble users",
     content: <OnlineUsers />,
   },
- 
 ];
 
 export const Mainn = () => {

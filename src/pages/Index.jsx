@@ -25,7 +25,7 @@ export const Index = () => {
 
   useEffect(() => {
     if (user) {
-      setCurrentPage(PAGES.MAIN);
+      // setCurrentPage(PAGES.MAIN);
     }
   }, [user]);
 

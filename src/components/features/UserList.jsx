@@ -3,8 +3,10 @@ import { useChat } from "../../api/useChat";
 import { PAGES } from "../../constants/pages";
 import { usePage } from "../../context/PageContext";
 import { useAuth } from "../../api/useAuth";
+import { useNavigate } from "react-router";
 
 export const UserList = () => {
+  const navigate = useNavigate()
   const {
     loading,
     error,
@@ -13,7 +15,7 @@ export const UserList = () => {
     createChat,
     createGroupChat,
   } = useChat();
-  const { setCurrentPage } = usePage();
+  // const { setCurrentPage } = usePage();
   // const {user}= useAut
   const { user } = useAuth()
 
@@ -30,7 +32,9 @@ export const UserList = () => {
     } else {
       createChat(recevierId);
     }
-    setCurrentPage(PAGES.CHAT);
+    navigate("/chat")
+
+    // setCurrentPage(PAGES.CHAT);
   };
 
   return (
