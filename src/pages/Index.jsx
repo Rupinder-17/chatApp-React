@@ -4,9 +4,10 @@ import { RegisterCom } from "../components/features/RegisterCom";
 import { OneToOneChat } from "../components/features/OneToOneChat";
 import { Mainn } from "../components/common/Mainn";
 import { useEffect } from "react";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 
 export const Index = () => {
+  const navigate = useNavigate()
   const { user, logout } = useAuth();
   console.log("userttt", user);
 
@@ -14,7 +15,7 @@ export const Index = () => {
     if (window.confirm("Are you sure you want to logout?")) {
       console.log("logout");
       logout();
-      window.location.reload();
+      navigate("/login")
     }
   };
 
